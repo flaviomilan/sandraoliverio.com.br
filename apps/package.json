@@ -17,7 +17,7 @@
     "code-fix": "npm run lint:fix && npm run format"
   },
   "dependencies": {
-    "astro": "^5.7.10"
+    "astro": "^5.12.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
