@@ -52,7 +52,7 @@ jobs:
 
       - name: "Terraform Init"
         id: init
-        run: terraform init -backend-config="bucket=${{ secrets.TF_STATE_BUCKET }}" -backend-config="key=milan.dev/terraform.tfstate" -backend-config="region=us-east-1"
+        run: terraform init -backend-config="bucket=${{ secrets.TF_STATE_BUCKET }}" -backend-config="key=sandraoliverio-com-br/terraform.tfstate" -backend-config="region=us-east-1"
 
       - name: "Terraform Validate"
         id: validate
@@ -101,7 +101,7 @@ jobs:
         id: terraform-outputs
         working-directory: ./infra/aws
         run: |
-          terraform init -backend-config="bucket=${{ secrets.TF_STATE_BUCKET }}" -backend-config="key=milan.dev/terraform.tfstate" -backend-config="region=us-east-1"
+          terraform init -backend-config="bucket=${{ secrets.TF_STATE_BUCKET }}" -backend-config="key=sandraoliverio-com-br/terraform.tfstate" -backend-config="region=us-east-1"
           echo "bucket_name=$(terraform output -raw bucket_id)" >> $GITHUB_ENV
           echo "cloudfront_distribution_id=$(terraform output -raw cloudfront_distribution_id)" >> $GITHUB_ENV
 

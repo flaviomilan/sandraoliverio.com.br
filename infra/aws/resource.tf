@@ -123,7 +123,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
     }
 
     access_control_allow_origins {
-      items = ["https://flaviomilan.dev"]
+      items = ["https://sandraoliverio.com.br"]
     }
 
     access_control_expose_headers {

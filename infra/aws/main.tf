@@ -6,7 +6,7 @@ terraform {
 
   backend "s3" {
     bucket = "cyoub-tf-state"
-    key    = "milandev/terraform.tfstate"
+    key    = "sandraoliverio-com-br/terraform.tfstate"
     region = "us-east-1"
   }
 }

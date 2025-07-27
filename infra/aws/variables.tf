@@ -22,7 +22,7 @@ variable "environment" {
 
 variable "project_name" {
     type        = string
-    default     = "milan-dev"
+    default     = "sandraoliverio-com-br"
     description = "The name of the project."
 }
 
