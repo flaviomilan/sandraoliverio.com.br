@@ -22,9 +22,17 @@ const shortDescription = description.length > maxDescriptionLength
 <div class="service-card" itemscope itemtype="https://schema.org/Service">
   {image && 
     <div class="service-img-container">
-      <div class="service-img" style={`background-image: url(${image})`} role="img" aria-label={`Imagem de ${title}`}>
-        <div class="service-overlay"></div>
-      </div>
+      <img 
+        src={image} 
+        alt={`${title} - Serviço de assessoria de eventos`}
+        class="service-img"
+        loading="lazy"
+        width="400"
+        height="300"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        decoding="async"
+      />
+      <div class="service-overlay"></div>
     </div>
   }
   
@@ -58,16 +66,22 @@ const shortDescription = description.length > maxDescriptionLength
     box-shadow: var(--shadow-medium);
   }
   
-  .service-img {
-    height: 300px; /* Imagem maior para maior impacto visual */
-    background-size: cover;
-    background-position: center;
+  .service-img-container {
     position: relative;
+    height: 300px;
     overflow: hidden;
-    transition: all 0.6s ease-out;
   }
   
-  .service-img::before {
+  .service-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.6s ease-out;
+    display: block;
+  }
+  
+  .service-img-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -76,6 +90,7 @@ const shortDescription = description.length > maxDescriptionLength
     height: 100%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
     z-index: 1;
+    pointer-events: none;
   }
   
   .service-overlay {
@@ -190,23 +205,92 @@ const shortDescription = description.length > maxDescriptionLength
     transform: translateX(5px);
   }
   
-  @media (max-width: 768px) {
+  /* Responsividade melhorada */
+  @media (max-width: 1024px) {
     .service-content {
       padding: 40px;
     }
     
     .service-content h3 {
+      font-size: 1.9rem;
+    }
+    
+    .service-img-container {
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .service-content {
+      padding: 35px;
+    }
+    
+    .service-content h3 {
       font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    
+    .service-img-container {
+      height: 260px;
+    }
+    
+    .service-content p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 580px) {
+    .service-content {
+      padding: 30px;
+    }
+    
+    .service-content h3 {
+      font-size: 1.7rem;
+    }
+    
+    .service-img-container {
+      height: 240px;
     }
   }
   
   @media (max-width: 480px) {
     .service-content {
-      padding: 30px;
+      padding: 25px;
     }
     
-    .service-img {
-      height: 250px;
+    .service-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+    
+    .service-img-container {
+      height: 220px;
+    }
+    
+    .service-content p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+    
+    .btn-service {
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .service-content {
+      padding: 20px;
+    }
+    
+    .service-img-container {
+      height: 200px;
+    }
+    
+    .service-content h3 {
+      font-size: 1.5rem;
     }
   }
 </style>

@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
+import InstagramGallery from '../components/InstagramGallery.astro';
 import { CONTACT, URLS, SITE } from '../constants';
 
 const pageTitle = "Sandra Oliverio - Assessoria de Eventos e Casamentos em Ribeirão Preto";
@@ -49,10 +50,10 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     <div class="container">
       <div class="about-section">
         <div class="about-img">
-          <img src="/images/sandraoliverio.avif" alt="Sandra Oliverio - Assessoria">
+          <img src="/images/sandraoliverio.avif" alt="Sandra Oliverio - Assessoria" loading="lazy" width="500" height="600">
         </div>
         <div class="about-content">
-          <h2>A arte de transformar momentos em memórias inesquecíveis</h2>
+          <h3>A arte de transformar momentos em memórias inesquecíveis</h3>
           <p>Desde 2008, Sandra Oliverio estabeleceu uma reputação de excelência no mercado de eventos distintivos. Com uma abordagem refinada e atemporal, conquistou reconhecimento entre os clientes mais exigentes, oferecendo serviços exclusivos que elevam cada celebração a um patamar superior de sofisticação.</p>
           
           <div class="quote">
@@ -68,7 +69,7 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
   <section class="testimonials-home">
     <div class="container">
       <div class="section-title">
-        <h2>O que nossos clientes dizem</h2>
+        <h3>O que nossos clientes dizem</h3>
       </div>
       
       <div class="testimonials-container">
@@ -87,10 +88,16 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     </div>
   </section>
   
-  <section class="cta-section" style="background-image: url('/images/cta-background.jpg')">
+  <InstagramGallery 
+    title="Nossos Momentos no Instagram"
+    showTitle={true}
+    maxPosts={6}
+  />
+  
+  <section class="cta-section" style="background-image: url('/images/casamento.avif')" role="banner" aria-label="Seção de chamada para ação com imagem de casamento elegante">
     <div class="container">
       <div class="cta-content">
-        <h2>Pronto para criar uma experiência extraordinária?</h2>
+        <h3>Pronto para criar uma experiência extraordinária?</h3>
         <p>Entre em contato para uma assessoria personalizada e descubra como podemos transformar sua visão em uma celebração sofisticada e memorável.</p>
         <a href={`${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`} target="_blank" class="btn-hero">Reserve um atendimento personalizado</a>
       </div>
@@ -165,7 +172,8 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     margin: 0 auto;
   }
   
-  .cta-content h2 {
+  .cta-content h2,
+  .cta-content h3 {
     color: white;
     margin-bottom: 25px;
     font-family: var(--font-primary);
@@ -178,5 +186,71 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     color: rgba(255, 255, 255, 0.9);
     font-family: var(--font-primary);
     line-height: 1.8;
+  }
+  
+  /* Responsividade para seção services */
+  @media (max-width: 768px) {
+    .services {
+      padding: 80px 0;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+    }
+    
+    .section-title h3 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 580px) {
+    .services {
+      padding: 60px 0;
+    }
+    
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+    
+    .section-title h3 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services {
+      padding: 50px 0;
+    }
+    
+    .section-title h2,
+    .section-title h3 {
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .cta-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-content p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .section-title h2,
+    .section-title h3 {
+      font-size: 1.7rem;
+    }
+    
+    .cta-content h3 {
+      font-size: 1.6rem;
+    }
+    
+    .cta-content p {
+      font-size: 1rem;
+    }
   }
 </style>

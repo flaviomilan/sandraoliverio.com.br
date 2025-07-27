@@ -8,10 +8,22 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
 
 <section class="hero" aria-label="Banner principal">
   <div class="video-container">
-    <video autoplay muted loop playsinline aria-hidden="true">
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      aria-hidden="true" 
+      preload="none" 
+      poster="/images/casamento.avif" 
+      data-astro-cid-bbe6dxrz
+      loading="lazy"
+      oncanplaythrough="this.style.opacity='1'"
+      style="opacity: 0; transition: opacity 0.5s ease-in-out;"
+    >
       <source src="/videos/hero-video.mp4" type="video/mp4">
       <!-- Fallback para quando o vídeo não carregar -->
-      <img src="/images/casamento.avif" alt="Cerimonial de casamento elegante" width="1920" height="1080">
+      <img src="/images/casamento.avif" alt="Cerimonial de casamento elegante" width="1920" height="1080" loading="eager" fetchpriority="high">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -34,6 +46,38 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     </a>
   </div>
 </section>
+
+<script>
+  // Carrega o vídeo após a página carregar para não travar o loading inicial
+  window.addEventListener('load', () => {
+    const video = document.querySelector('.hero video');
+    if (video) {
+      // Define preload apenas após o load da página
+      video.preload = 'auto';
+      
+      // Força o load do vídeo
+      video.load();
+      
+      // Quando o vídeo estiver pronto para reproduzir, faz o fade in
+      video.addEventListener('canplaythrough', () => {
+        video.style.opacity = '1';
+      });
+      
+      // Fallback: se demorar muito para carregar, remove o vídeo e mantém apenas o poster
+      const loadTimeout = setTimeout(() => {
+        if (video.readyState < 4) { // Se não carregou completamente
+          video.style.display = 'none';
+          console.log('Vídeo removido devido ao tempo limite de carregamento');
+        }
+      }, 5000); // 5 segundos timeout
+      
+      // Limpa o timeout se o vídeo carregar
+      video.addEventListener('canplaythrough', () => {
+        clearTimeout(loadTimeout);
+      });
+    }
+  });
+</script>
 
 <style>
   .hero {

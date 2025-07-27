@@ -1,0 +1,431 @@
+---
+// Importando constantes e utilitários
+import { URLS, INSTAGRAM } from '../constants';
+import { getInstagramPosts } from '../utils/instagram.js';
+
+// Props para configuração da galeria
+interface Props {
+  title?: string;
+  showTitle?: boolean;
+  maxPosts?: number;
+  useFallback?: boolean;
+}
+
+const { 
+  title = "Nossos Momentos no Instagram",
+  showTitle = true,
+  maxPosts = 6,
+  useFallback = false
+} = Astro.props;
+
+// Buscar posts reais do Instagram ou usar fallback
+let instagramPosts = [];
+let errorMessage = null;
+
+try {
+  instagramPosts = await getInstagramPosts({
+    accessToken: INSTAGRAM.ACCESS_TOKEN,
+    limit: maxPosts,
+    useFallback: useFallback || INSTAGRAM.USE_FALLBACK
+  });
+  
+  console.log(`✅ Instagram: Carregados ${instagramPosts.length} posts`);
+} catch (error) {
+  console.error('❌ Instagram: Erro ao carregar posts:', error);
+  errorMessage = 'Não foi possível carregar os posts do Instagram';
+  
+  // Usar fallback em caso de erro
+  const { fallbackInstagramPosts } = await import('../utils/instagram.js');
+  instagramPosts = fallbackInstagramPosts.slice(0, maxPosts);
+}
+
+// Se ainda não tem posts, mostrar mensagem
+if (instagramPosts.length === 0) {
+  console.warn('⚠️ Instagram: Nenhum post disponível');
+}
+---
+
+<section class="instagram-gallery" aria-label="Galeria do Instagram">
+  <div class="container">
+    {showTitle && (
+      <div class="gallery-header">
+        <h3>{title}</h3>
+        <div class="elegant-divider">
+          <span></span>
+          <div class="ornament"></div>
+          <span></span>
+        </div>
+        <p>Acompanhe nossos trabalhos mais recentes e inspire-se</p>
+        {errorMessage && (
+          <div class="error-message" role="alert">
+            <p>⚠️ {errorMessage} - Exibindo posts em destaque</p>
+          </div>
+        )}
+      </div>
+    )}
+    
+    <div class="instagram-grid">
+      {instagramPosts.map((post) => (
+        <a 
+          href={post.link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="instagram-item" 
+          key={post.id}
+          aria-label={`Ver post no Instagram: ${post.caption}`}
+        >
+          <div class="instagram-image-container">
+            <img 
+              src={post.image} 
+              alt={post.caption}
+              loading="lazy"
+              width="300"
+              height="300"
+            />
+            <div class="instagram-overlay">
+              <div class="instagram-content">
+                <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <p class="instagram-caption">{post.caption.length > 120 ? post.caption.substring(0, 120) + '...' : post.caption}</p>
+                {post.timestamp && (
+                  <small class="instagram-date">
+                    {new Date(post.timestamp).toLocaleDateString('pt-BR')}
+                  </small>
+                )}
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="gallery-footer">
+      <a 
+        href={URLS.INSTAGRAM} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn-instagram"
+        aria-label="Visite nosso perfil no Instagram"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Siga no Instagram
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .instagram-gallery {
+    padding: 100px 0;
+    background-color: var(--color-off-white);
+  }
+  
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .gallery-header h3 {
+    font-family: var(--font-primary);
+    font-size: 2.8rem;
+    color: var(--color-dark);
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-elegant);
+  }
+  
+  .elegant-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    width: 50%;
+  }
+  
+  .elegant-divider span {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(58, 58, 58, 0.3));
+  }
+  
+  .elegant-divider span:last-child {
+    background: linear-gradient(to left, transparent, rgba(58, 58, 58, 0.3));
+  }
+  
+  .elegant-divider .ornament {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-taupe);
+    transform: rotate(45deg);
+    margin: 0 20px;
+    opacity: 0.8;
+  }
+  
+  .gallery-header p {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .instagram-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition);
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .instagram-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .instagram-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .instagram-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .instagram-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  .instagram-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(58, 58, 58, 0.85) 0%, rgba(184, 168, 158, 0.75) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(2px);
+  }
+  
+  .instagram-item:hover .instagram-overlay {
+    opacity: 1;
+  }
+  
+  .instagram-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+  
+  .instagram-item:hover .instagram-content {
+    transform: translateY(0);
+  }
+  
+  .instagram-icon {
+    margin-bottom: 15px;
+    opacity: 0.9;
+  }
+  
+  .instagram-caption {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 8px 0;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  
+  .instagram-date {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-style: italic;
+  }
+  
+  .error-message {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(255, 193, 7, 0.1);
+    border-radius: var(--border-radius);
+    border-left: 3px solid #ffc107;
+  }
+  
+  .error-message p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+  
+  .image-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light-gray);
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+  
+  .no-posts-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+  
+  .gallery-footer {
+    text-align: center;
+  }
+  
+  .btn-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background-color: transparent;
+    border: 1px solid var(--color-taupe);
+    color: var(--color-dark);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-instagram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 168, 158, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .btn-instagram:hover::before {
+    left: 100%;
+  }
+  
+  .btn-instagram:hover {
+    border-color: var(--color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(58, 58, 58, 0.15);
+  }
+  
+  .btn-instagram .arrow {
+    transition: transform 0.4s ease;
+  }
+  
+  .btn-instagram:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  /* Responsividade */
+  @media (min-width: 768px) {
+    .instagram-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .instagram-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .instagram-gallery {
+      padding: 80px 0;
+    }
+    
+    .gallery-header h3 {
+      font-size: 2.4rem;
+    }
+    
+    .instagram-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .elegant-divider {
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 580px) {
+    .instagram-gallery {
+      padding: 60px 0;
+    }
+    
+    .gallery-header h3 {
+      font-size: 2.2rem;
+    }
+    
+    .gallery-header {
+      margin-bottom: 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .instagram-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+      max-width: 400px;
+      margin: 0 auto 40px;
+    }
+    
+    .gallery-header h3 {
+      font-size: 2rem;
+    }
+    
+    .btn-instagram {
+      padding: 14px 30px;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .gallery-header h3 {
+      font-size: 1.8rem;
+    }
+    
+    .instagram-grid {
+      max-width: 100%;
+    }
+  }
+</style>

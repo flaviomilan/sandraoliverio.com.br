@@ -5,18 +5,43 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Cache-Control: public, max-age=3600
-  Content-Security-Policy: upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://graph.instagram.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' blob:; connect-src 'self' https://graph.instagram.com https://api.instagram.com; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   
-# Permitir que recursos estáticos sejam armazenados em cache por mais tempo
+# Cache agressivo para recursos estáticos (1 ano)
 /images/*
-  Cache-Control: public, max-age=86400, immutable
+  Cache-Control: public, max-age=31536000, immutable
+  
 /styles/*
-  Cache-Control: public, max-age=86400, immutable
+  Cache-Control: public, max-age=31536000, immutable
+  
 /videos/*
-  Cache-Control: public, max-age=86400, immutable
+  Cache-Control: public, max-age=31536000, immutable
+  
 /favicon.svg
-  Cache-Control: public, max-age=86400, immutable
+  Cache-Control: public, max-age=31536000, immutable
+  
+# Cache específico para tipos de arquivo
+*.avif
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.png
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.css
+  Cache-Control: public, max-age=31536000, immutable
+  
+*.js
+  Cache-Control: public, max-age=31536000, immutable
   
 # Arquivos importantes para SEO
 /sitemap.xml

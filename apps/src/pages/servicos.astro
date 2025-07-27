@@ -1,16 +1,10 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE } from '../constants';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 const pageTitle = "Serviços de Assessoria para Eventos e Casamentos | Sandra Oliverio";
 const pageDescription = "Conheça nossos serviços exclusivos para casamentos, festas de 15 anos e eventos corporativos. Trabalhamos com os melhores fornecedores de Ribeirão Preto para criar experiências únicas.";
 
-// Definindo os itens do breadcrumb
-const breadcrumbItems = [
-  { text: 'Home', url: '/' },
-  { text: 'Serviços', url: '/servicos', current: true }
-];
 
 // Schema.org para serviços de casamento
 const weddingServiceSchema = {
@@ -119,8 +113,6 @@ const consultingServiceSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(corporateServiceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(consultingServiceSchema)} />
   
-  <Breadcrumbs items={breadcrumbItems} />
-  
   <section class="page-header" style="background-image: url('/images/casamento.avif')" aria-label="Banner da página de serviços">
     <div class="container">
       <h1>Nossos Serviços</h1>
@@ -132,8 +124,6 @@ const consultingServiceSchema = {
       <p class="header-subtitle">Experiência e dedicação para tornar seu evento único e inesquecível</p>
     </div>
   </section>
-  
-  <Breadcrumbs items={breadcrumbItems} />
   
   <section class="services-section">
     <div class="container">
@@ -197,7 +187,7 @@ const consultingServiceSchema = {
         </div>
         
         <div class="service-item reverse">
-          <div class="service-image" style="background-image: url('/images/image.png')"></div>
+          <div class="service-image servicos-image" style="background-image: url('/images/servicos.jpg')"></div>
           <div class="service-content">
             <h2 id="assessoria-personalizada">Assessoria Personalizada</h2>
             <p>Oferecemos assessoria especializada para aqueles que desejam participar ativamente da organização do seu evento, com suporte profissional nos aspectos mais desafiadores.</p>
@@ -326,6 +316,12 @@ const consultingServiceSchema = {
     box-shadow: var(--shadow-soft);
   }
   
+  /* Ajuste específico para a imagem servicos.avif que estava cortando na parte superior */
+  .servicos-image {
+    background-position: center top;
+    background-size: cover;
+  }
+  
   .service-content h2 {
     color: var(--color-secondary);
     margin-bottom: 20px;
@@ -399,6 +395,34 @@ const consultingServiceSchema = {
     
     .service-image {
       height: 300px;
+    }
+    
+    /* Mantém o ajuste de posicionamento em mobile */
+    .servicos-image {
+      height: 300px;
+      background-position: center top;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .service-image {
+      height: 250px;
+    }
+    
+    .servicos-image {
+      height: 250px;
+      background-position: center top;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .service-image {
+      height: 220px;
+    }
+    
+    .servicos-image {
+      height: 220px;
+      background-position: center top;
     }
   }
 </style>

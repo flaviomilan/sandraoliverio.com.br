@@ -1,17 +1,11 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
 import { CONTACT, URLS, SITE } from '../constants';
 
 const pageTitle = "Depoimentos de Clientes | Sandra Oliverio - Assessoria de Eventos";
 const pageDescription = "Veja o que nossos clientes dizem sobre nosso trabalho. Depoimentos autênticos de casais e empresas que contrataram a assessoria de Sandra Oliverio para seus eventos.";
 
-// Definindo os itens do breadcrumb
-const breadcrumbItems = [
-  { text: 'Home', url: '/' },
-  { text: 'Depoimentos', url: '/depoimentos', current: true }
-];
 
 // Schema.org para coleção de depoimentos
 const reviewsSchema = {
@@ -78,7 +72,6 @@ const reviewsSchema = {
     </div>
   </section>
   
-  <Breadcrumbs items={breadcrumbItems} />
   
   <section class="testimonials-section">
     <div class="container">

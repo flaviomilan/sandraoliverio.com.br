@@ -1,7 +1,6 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { CONTACT, URLS, SITE } from '../constants';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // Construindo a URL do WhatsApp
 const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
@@ -9,11 +8,6 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
 const pageTitle = "Sobre Nós | Sandra Oliverio - Assessoria de Eventos";
 const pageDescription = "Conheça a história da Sandra Oliverio, cerimonialista com mais de 15 anos de experiência em casamentos e eventos de luxo em Ribeirão Preto. Nossa equipe, valores e missão.";
 
-// Definindo os itens do breadcrumb
-const breadcrumbItems = [
-  { text: 'Home', url: '/' },
-  { text: 'Sobre', url: '/sobre', current: true }
-];
 
 // Schema.org para Person com detalhes da Sandra como profissional
 const personSchema = {
@@ -63,7 +57,6 @@ const personSchema = {
     </div>
   </section>
   
-  <Breadcrumbs items={breadcrumbItems} />
   
   <section class="about-story-section">
     <div class="container">

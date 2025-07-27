@@ -16,23 +16,34 @@ document.addEventListener('DOMContentLoaded', function() {
   // Verificar se os elementos existem antes de adicionar listeners
   if (header) {
     let lastScrollY = window.scrollY;
+    let ticking = false;
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
+    function updateHeader() {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 100) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
 
       // Esconde/mostra o header em scroll
-      if (window.scrollY > lastScrollY && window.scrollY > 200) {
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
         header.classList.add('header-hidden');
       } else {
         header.classList.remove('header-hidden');
       }
       
-      lastScrollY = window.scrollY;
-    });
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   // Função para alternar o menu mobile
