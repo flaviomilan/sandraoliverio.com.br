@@ -1,0 +1,982 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { CONTACT, URLS, SITE } from '../constants';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+// Construindo a URL do WhatsApp
+const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
+
+const pageTitle = "Sobre Nós | Sandra Oliverio - Assessoria de Eventos";
+const pageDescription = "Conheça a história da Sandra Oliverio, cerimonialista com mais de 15 anos de experiência em casamentos e eventos de luxo em Ribeirão Preto. Nossa equipe, valores e missão.";
+
+// Definindo os itens do breadcrumb
+const breadcrumbItems = [
+  { text: 'Home', url: '/' },
+  { text: 'Sobre', url: '/sobre', current: true }
+];
+
+// Schema.org para Person com detalhes da Sandra como profissional
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sandra Oliverio",
+  "jobTitle": "Cerimonialista e Assessora de Eventos",
+  "description": "Profissional com mais de 15 anos de experiência em planejamento e organização de casamentos e eventos de luxo em Ribeirão Preto e região.",
+  "image": "https://sandraoliverio.com.br/images/sandraoliverio.avif",
+  "url": "https://sandraoliverio.com.br/sobre",
+  "sameAs": [
+    "https://instagram.com/sandra_oliverio"
+  ],
+  "knowsAbout": [
+    "Planejamento de Casamentos",
+    "Organização de Eventos",
+    "Cerimonial de Luxo",
+    "Coordenação de Fornecedores"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Sandra Oliverio Assessoria",
+    "url": "https://sandraoliverio.com.br"
+  }
+};
+---
+
+<MainLayout 
+  title={pageTitle} 
+  description={pageDescription}
+  ogType="website"
+  image="/images/sandraoliverio.avif"
+>
+  <script type="application/ld+json">
+    {JSON.stringify(personSchema)}
+  </script>
+  
+  <section class="page-header" style="background-image: url('/images/casamento.avif')">
+    <div class="container">
+      <h1>Sobre Nós</h1>
+      <div class="header-divider">
+        <span></span>
+        <div class="divider-ornament"></div>
+        <span></span>
+      </div>
+      <p class="header-subtitle">Conheça nossa história, valores e a equipe que transforma sonhos em realidade</p>
+    </div>
+  </section>
+  
+  <Breadcrumbs items={breadcrumbItems} />
+  
+  <section class="about-story-section">
+    <div class="container">
+      <div class="about-story-wrapper">
+        <div class="decorative-border">
+          <div class="about-intro">
+            <div class="section-heading">
+              <h2>Nossa História</h2>
+              <div class="heading-accent"></div>
+            </div>
+            
+            <div class="intro-content">
+              <div class="intro-text">
+                <p class="featured-text">Desde 2008 no mercado de eventos, Sandra Oliverio já consolidou seu espaço e se destaca entre os clientes mais exigentes, visando sobretudo construir um evento especial e personalizado em cada detalhe, a intenção é superar expectativas e fazer cada evento ser único!</p>
+                
+                <p>Nossa trajetória é marcada pela dedicação em transformar sonhos em realidade, proporcionando aos nossos clientes experiências inesquecíveis. Cada evento é tratado com exclusividade, garantindo que cada detalhe reflita a personalidade e os desejos dos envolvidos.</p>
+              </div>
+              
+              <div class="intro-image">
+                <div class="image-frame">
+                  <img src="/images/sandraoliverio.avif" alt="Sandra Oliverio" />
+                  <div class="image-border"></div>
+                </div>
+                
+                <div class="experience-tag">
+                  <span class="years">15+</span>
+                  <span class="text">Anos de experiência</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="mission-section">
+    <div class="container">
+      <div class="mission-wrapper">
+        <div class="mission-content">
+          <div class="section-heading center">
+            <h2>Nossa Missão</h2>
+            <div class="heading-accent center"></div>
+          </div>
+          
+          <div class="mission-card">
+            <div class="mission-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <p class="mission-text">
+              Nossa missão é elevar a confiança de seus clientes através de atendimentos e serviços de alta qualidade e design refinado. Através de nossa expertise, nos dedicamos a criar experiências únicas, oferecendo assessoria exclusiva e atendimento impecável, visando sobretudo construir um evento especial e personalizado em cada detalhe, superando as expectativas e tornando cada evento verdadeiramente único.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="philosophy-section">
+    <div class="container">
+      <div class="philosophy-wrapper">
+        <div class="philosophy-content">
+          <div class="section-heading center">
+            <h2>Nossa Filosofia</h2>
+            <div class="heading-accent center"></div>
+          </div>
+          
+          <div class="elegant-quote">
+            <div class="quote-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z"/>
+              </svg>
+            </div>
+            <blockquote>
+              <p>Trabalhar com o que amo faz enriquecer meu olhar, refinar minha sensibilidade, qualificar meus pensamentos e poetizar minha alma.</p>
+              <cite>— Sandra Oliverio</cite>
+            </blockquote>
+          </div>
+          
+          <p class="philosophy-text">Acreditamos que cada evento é uma narrativa única e bela, com muitos finais felizes. Nosso compromisso é criar momentos memoráveis que permaneçam no coração de todos os envolvidos por toda a vida. Trabalhamos com paixão e dedicação para que cada detalhe seja perfeito, transformando sonhos em realidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="values-section">
+    <div class="container">
+      <div class="section-heading center">
+        <h2>Nossos Valores</h2>
+        <div class="heading-accent center"></div>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <h3>Excelência</h3>
+          <p>Comprometimento com a qualidade em todos os aspectos do nosso trabalho, buscando superar as expectativas em cada evento que realizamos.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3>Personalização</h3>
+          <p>Cada evento é único e deve refletir a personalidade e os desejos dos nossos clientes. Trabalhamos para criar experiências verdadeiramente personalizadas.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="16" y1="6" x2="16" y2="22"></line>
+            </svg>
+          </div>
+          <h3>Criatividade</h3>
+          <p>Buscamos sempre soluções inovadoras e criativas para tornar cada evento especial, incorporando elementos únicos que surpreendem nossos clientes.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="value-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Confiança</h3>
+          <p>Construímos relacionamentos baseados na confiança e transparência, garantindo que nossos clientes se sintam seguros durante todo o processo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section" style="background-image: url('/images/cta-background.jpg')">
+    <div class="cta-overlay"></div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Compartilhe seus sonhos conosco</h2>
+        <p>Entre em contato e descubra como podemos transformar sua visão em uma celebração inesquecível.</p>
+        <a href={whatsappUrl} target="_blank" class="btn-hero">
+            <span>Reserve um atendimento personalizado</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  /* Cabeçalho da página */
+  .page-header {
+    position: relative;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .page-header h1 {
+    color: white;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 20px;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-divider span {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .header-divider span:last-child {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .divider-ornament {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  /* Seção sobre nossa história */
+  .about-story-section {
+    padding: 100px 0;
+    background-color: #fff;
+  }
+  
+  .about-story-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .decorative-border {
+    position: relative;
+    padding: 60px;
+  }
+  
+  .decorative-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+  }
+  
+  .section-heading {
+    margin-bottom: 40px;
+    position: relative;
+  }
+  
+  .section-heading h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    color: var(--color-dark);
+    position: relative;
+  }
+  
+  .heading-accent {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-gold), rgba(212, 175, 55, 0.2));
+  }
+  
+  .heading-accent.center {
+    margin: 0 auto;
+    background: linear-gradient(to right, rgba(212, 175, 55, 0.2), var(--color-gold), rgba(212, 175, 55, 0.2));
+  }
+  
+  .section-heading.center {
+    text-align: center;
+  }
+  
+  .intro-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  
+  .featured-text {
+    font-family: var(--font-primary);
+    font-size: 1.15rem;
+    color: var(--color-accent);
+    font-style: italic;
+    line-height: 1.8;
+    margin-bottom: 25px;
+  }
+  
+  .intro-text p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  .intro-image {
+    position: relative;
+  }
+  
+  .image-frame {
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    border-radius: 5px;
+  }
+  
+  .image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .intro-image:hover .image-frame img {
+    transform: scale(1.05);
+  }
+  
+  .image-border {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+  }
+  
+  .experience-tag {
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #e2c481 50%, var(--color-gold) 100%);
+    color: white;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+    z-index: 2;
+  }
+  
+  .experience-tag .years {
+    font-family: var(--font-primary);
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+  
+  .experience-tag .text {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 5px;
+    max-width: 80%;
+    line-height: 1.2;
+  }
+  
+  /* Seção missão */
+  .mission-section {
+    padding: 100px 0;
+    background-color: var(--color-light);
+  }
+  
+  .mission-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .mission-content {
+    text-align: center;
+  }
+  
+  .mission-card {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+  
+  .mission-icon {
+    width: 65px;
+    height: 65px;
+    background-color: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--color-gold);
+    transition: all 0.3s ease;
+  }
+  
+  .mission-card:hover .mission-icon {
+    background-color: var(--color-gold);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .mission-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+  }
+  
+  /* Seção filosofia */
+  .philosophy-section {
+    padding: 100px 0;
+    background-color: var(--color-cream);
+    position: relative;
+  }
+  
+  .philosophy-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/background.svg');
+    background-size: cover;
+    opacity: 0.03;
+    z-index: 0;
+  }
+  
+  .philosophy-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .elegant-quote {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    padding: 40px 60px;
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+  }
+  
+  .elegant-quote::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+  }
+  
+  .quote-icon {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #e2c481 50%, var(--color-gold) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .elegant-quote blockquote {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .elegant-quote p {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  
+  .elegant-quote cite {
+    font-style: normal;
+    font-size: 1rem;
+    color: var(--color-accent);
+    display: block;
+    font-family: var(--font-secondary);
+    letter-spacing: 1px;
+  }
+  
+  .philosophy-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+  
+  /* Seção equipe */
+  .team-section {
+    padding: 100px 0;
+    background-color: white;
+  }
+  
+  .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .team-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: white;
+    height: 100%;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-card-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .team-img-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .team-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .team-card:hover .team-img {
+    transform: scale(1.05);
+  }
+  
+  .social-icons {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 60px 20px 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+  
+  .team-card:hover .social-icons {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .social-icons a {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    background-color: var(--color-gold);
+    transform: translateY(-3px);
+  }
+  
+  .team-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .team-info h3 {
+    margin-bottom: 5px;
+    color: var(--color-dark);
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  
+  .team-position {
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+  }
+  
+  .team-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 0;
+  }
+  
+  /* Seção valores */
+  .values-section {
+    padding: 100px 0;
+    background-color: var(--color-light);
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 50px auto 0;
+  }
+  
+  .value-card {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-align: center;
+    position: relative;
+  }
+  
+  .value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-gold), rgba(212, 175, 55, 0.2));
+    border-radius: 8px 8px 0 0;
+    transition: all 0.5s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+  
+  .value-card:hover::before {
+    background: var(--color-gold);
+  }
+  
+  .value-icon {
+    width: 65px;
+    height: 65px;
+    background-color: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--color-gold);
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover .value-icon {
+    background-color: var(--color-gold);
+    color: white;
+    transform: scale(1.1);
+  }
+  
+  .value-card h3 {
+    font-size: 1.3rem;
+    color: var(--color-dark);
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+  }
+  
+  .value-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 0;
+  }
+  
+  /* Seção CTA */
+  .cta-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+  }
+  
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  
+  .cta-content p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .cta-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 20px;
+    width: 50%;
+  }
+  
+  .cta-divider span {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .cta-divider span:last-child {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .btn-luxury {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  .btn-luxury-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, #e2c481 50%, var(--color-gold) 100%);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .btn-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e2c481 0%, var(--color-gold) 50%, #e2c481 100%);
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 50px;
+  }
+  
+  .btn-luxury:hover::before {
+    opacity: 1;
+  }
+  
+  .btn-luxury:hover .btn-luxury-content {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  }
+  
+  .btn-luxury-content svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-luxury:hover .btn-luxury-content svg {
+    transform: translateX(5px);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .intro-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .intro-image {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .elegant-quote {
+      padding: 30px 20px;
+    }
+    
+    .elegant-quote p {
+      font-size: 1.3rem;
+    }
+    
+    .decorative-border {
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page-header {
+      height: 320px;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .header-divider, .cta-divider {
+      width: 80%;
+    }
+    
+    .section-heading h2 {
+      font-size: 1.8rem;
+    }
+    
+    .elegant-quote p {
+      font-size: 1.2rem;
+    }
+    
+    .team-grid, .values-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+    
+    .experience-tag {
+      width: 90px;
+      height: 90px;
+      bottom: -15px;
+      right: -15px;
+    }
+    
+    .experience-tag .years {
+      font-size: 2rem;
+    }
+    
+    .value-card {
+      padding: 30px 20px;
+    }
+  }
+</style>

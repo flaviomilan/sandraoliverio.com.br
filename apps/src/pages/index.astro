@@ -1,0 +1,182 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { CONTACT, URLS, SITE } from '../constants';
+
+const pageTitle = "Sandra Oliverio - Assessoria de Eventos e Casamentos em Ribeirão Preto";
+const pageDescription = "Cerimonialista com mais de 15 anos de experiência em casamentos e eventos de luxo. Serviços personalizados com elegância e sofisticação em Ribeirão Preto e região.";
+---
+
+<MainLayout 
+  title={pageTitle}
+  description={pageDescription}
+  ogType="website"
+  image="/images/sandraoliverio.avif"
+>
+  <Hero />
+  
+  <section class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Serviços Exclusivos</h2>
+      </div>
+      
+      <div class="services-grid">
+        <ServiceCard 
+          title="Cerimônias de Casamento" 
+          description="Concebemos ocasiões memoráveis que transcendem o ordinário, onde cada elemento é meticulosamente selecionado para harmonizar-se em uma experiência sensorial refinada e singular." 
+          image="/images/casamento-1.avif" 
+        />
+        
+        <ServiceCard 
+          title="Celebrações de 15 Anos" 
+          description="Elaboramos celebrações de 15 anos que combinam tradição e modernidade, criando ambientes sofisticados que refletem a personalidade e elegância da debutante." 
+          image="/images/15anos.avif" 
+        />
+        
+        <ServiceCard 
+          title="Eventos Corporativos Distintivos" 
+          description="Desenvolvemos experiências corporativas que elevam o prestígio da sua marca, com atenção primorosa aos detalhes e serviço impecável, adequados ao mais exigente público." 
+          image="/images/corporativo.avif" 
+        />
+      </div>
+    </div>
+  </section>
+  
+  <section class="about-home" style="background-color: var(--color-cream);">
+    <div class="container">
+      <div class="about-section">
+        <div class="about-img">
+          <img src="/images/sandraoliverio.avif" alt="Sandra Oliverio - Assessoria">
+        </div>
+        <div class="about-content">
+          <h2>A arte de transformar momentos em memórias inesquecíveis</h2>
+          <p>Desde 2008, Sandra Oliverio estabeleceu uma reputação de excelência no mercado de eventos distintivos. Com uma abordagem refinada e atemporal, conquistou reconhecimento entre os clientes mais exigentes, oferecendo serviços exclusivos que elevam cada celebração a um patamar superior de sofisticação.</p>
+          
+          <div class="quote">
+            "Transformar visões em realidade sublime requer sensibilidade estética, rigor na execução e compromisso com a excelência em cada detalhe, criando assim experiências verdadeiramente memoráveis."
+          </div>
+          
+          <a href="/sobre" class="btn-hero">Conheça nossa filosofia</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="testimonials-home">
+    <div class="container">
+      <div class="section-title">
+        <h2>O que nossos clientes dizem</h2>
+      </div>
+      
+      <div class="testimonials-container">
+        <TestimonialCard 
+          name="Flavio Milan" 
+          feedback="A experiência com a equipe de Sandra Oliverio transcendeu todas as nossas expectativas. Cada aspecto do nosso casamento foi executado com precisão e refinamento incomparáveis, resultando em uma celebração verdadeiramente memorável que refletiu perfeitamente nossa personalidade." 
+        />
+        
+        <TestimonialCard 
+          name="Marina e Carlos" 
+          feedback="A sofisticação e elegância que Sandra e sua equipe trouxeram ao nosso casamento foram verdadeiramente excepcionais. O evento destacou-se pelo requinte em cada detalhe, proporcionando uma experiência sensorial distinta e inesquecível para nós e nossos convidados." 
+        />
+        
+        <a href="/depoimentos" class="btn-more">Veja mais depoimentos exclusivos</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section" style="background-image: url('/images/cta-background.jpg')">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Pronto para criar uma experiência extraordinária?</h2>
+        <p>Entre em contato para uma assessoria personalizada e descubra como podemos transformar sua visão em uma celebração sofisticada e memorável.</p>
+        <a href={`${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`} target="_blank" class="btn-hero">Reserve um atendimento personalizado</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .btn-more {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    position: relative;
+    transition: all 0.4s ease;
+    color: var(--color-gold);
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  
+  .btn-more::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-gold);
+    transition: width 0.4s ease;
+  }
+  
+  .btn-more:hover::after {
+    width: 100%;
+  }
+  
+  .btn-more:hover {
+    color: var(--color-gold-dark);
+  }
+  
+  .testimonials-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 140px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    color: white;
+    margin-bottom: 25px;
+    font-family: var(--font-primary);
+    letter-spacing: var(--letter-spacing-elegant);
+  }
+  
+  .cta-content p {
+    margin-bottom: 40px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    line-height: 1.8;
+  }
+</style>

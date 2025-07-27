@@ -1,0 +1,18 @@
+name = "sandraoliverio"
+compatibility_date = "2023-04-20"
+
+# Configuração para site estático em Cloudflare Pages
+main = "./.cloudflare/worker.js"
+
+[site]
+  bucket = "./dist"
+
+[build]
+  command = "npm run build"
+  upload.format = "directory"
+
+[env.production]
+  vars = { ENVIRONMENT = "production" }
+
+[triggers]
+  crons = []

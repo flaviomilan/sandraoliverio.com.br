@@ -1,0 +1,273 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { CONTACT, URLS, SITE } from '../constants';
+
+const pageTitle = "Depoimentos de Clientes | Sandra Oliverio - Assessoria de Eventos";
+const pageDescription = "Veja o que nossos clientes dizem sobre nosso trabalho. Depoimentos autênticos de casais e empresas que contrataram a assessoria de Sandra Oliverio para seus eventos.";
+
+// Definindo os itens do breadcrumb
+const breadcrumbItems = [
+  { text: 'Home', url: '/' },
+  { text: 'Depoimentos', url: '/depoimentos', current: true }
+];
+
+// Schema.org para coleção de depoimentos
+const reviewsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Review",
+      "reviewBody": "Sandra e sua equipe superaram todas as nossas expectativas. Nosso casamento foi perfeito, cada detalhe cuidadosamente elaborado refletiu nossa personalidade.",
+      "author": {
+        "@type": "Person",
+        "name": "Ana e Ricardo"
+      },
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Cerimonial de Casamento da Sandra Oliverio"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    },
+    {
+      "@type": "Review",
+      "reviewBody": "Profissionalismo impecável! A Sandra e sua equipe nos proporcionaram uma festa de 15 anos inesquecível para nossa filha.",
+      "author": {
+        "@type": "Person",
+        "name": "Família Mendes"
+      },
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Assessoria para Festa de 15 Anos da Sandra Oliverio"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
+  ]
+};
+---
+
+<MainLayout 
+  title={pageTitle}
+  description={pageDescription}
+  ogType="website"
+  image="/images/casamento.avif"
+>
+  <script type="application/ld+json">
+    {JSON.stringify(reviewsSchema)}
+  </script>
+  
+  <section class="page-header" style="background-image: url('/images/casamento.avif')">
+    <div class="container">
+      <h1>Depoimentos</h1>
+      <div class="header-divider">
+        <span></span>
+        <div class="divider-ornament"></div>
+        <span></span>
+      </div>
+      <p class="header-subtitle">O que nossos clientes dizem sobre nossa dedicação e comprometimento</p>
+    </div>
+  </section>
+  
+  <Breadcrumbs items={breadcrumbItems} />
+  
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="testimonials-intro">
+        <p>Confira o que nossos clientes dizem sobre o nosso trabalho. Cada história é única e cada evento é especial para nós.</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <TestimonialCard 
+          name="Flavio Milan" 
+          feedback="Não tenho palavras para expressar minha gratidão à equipe maravilhosa da Sandra Oliverio. Nosso casamento foi um sonho tornado realidade, e tudo isso graças ao profissionalismo, dedicação e criatividade incríveis desses profissionais talentosos." 
+        />
+        
+        <TestimonialCard 
+          name="Marina e Carlos" 
+          feedback="Sandra e sua equipe fizeram de nosso casamento um evento único e inesquecível. Cada detalhe foi cuidadosamente planejado e executado com perfeição. Recomendamos sem hesitar!" 
+        />
+        
+        <TestimonialCard 
+          name="Juliana Pessoa" 
+          feedback="A festa de 15 anos da minha filha foi perfeita! A Sandra compreendeu exatamente o que queríamos e superou todas as nossas expectativas. Atenção aos detalhes, profissionalismo e muita sensibilidade." 
+        />
+        
+        <TestimonialCard 
+          name="Ricardo e Amanda" 
+          feedback="Contratar a Sandra para nosso casamento foi a melhor decisão que tomamos. Ela conduziu todo o processo com maestria e nos deixou tranquilos para aproveitar cada momento. Tudo foi mágico!" 
+        />
+        
+        <TestimonialCard 
+          name="Grupo Empresarial XYZ" 
+          feedback="Nossa convenção anual precisava ser perfeita e a equipe da Sandra cumpriu com excelência. Organização impecável, atendimento personalizado e soluções criativas fizeram toda a diferença." 
+        />
+        
+        <TestimonialCard 
+          name="Fernanda e Paulo" 
+          feedback="Só temos a agradecer por todo carinho e dedicação. Nosso casamento foi exatamente como sonhamos, e a Sandra e sua equipe foram fundamentais para que tudo acontecesse da melhor forma possível." 
+        />
+        
+        <TestimonialCard 
+          name="Cristina Martins" 
+          feedback="A festa de 15 anos da minha filha foi um evento inesquecível! A Sandra entendeu perfeitamente o estilo que buscávamos e transformou tudo em realidade. Elegância e sofisticação em cada detalhe!" 
+        />
+        
+        <TestimonialCard 
+          name="Pedro e Luiza" 
+          feedback="Do início ao fim do planejamento, só temos elogios. Profissionalismo, capacidade de resolver imprevistos e extrema organização. Nosso grande dia foi perfeito graças à Sandra e sua equipe." 
+        />
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta-section" style="background-image: url('/images/cta-background.jpg')">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Transforme seus eventos em experiências memoráveis</h2>
+        <p>Entre em contato para uma assessoria personalizada e descubra a diferença que a excelência faz.</p>
+        <a href={`${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`} target="_blank" class="btn-hero">Reserve um atendimento personalizado</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .page-header h1 {
+    color: white;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 20px;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-divider span {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .header-divider span:last-child {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .divider-ornament {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .testimonials-section {
+    padding: 80px 0;
+  }
+  
+  .testimonials-intro {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 30px;
+  }
+  
+  .cta-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h2 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .cta-content p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

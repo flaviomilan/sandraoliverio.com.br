@@ -1,0 +1,41 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: public, max-age=3600
+  Content-Security-Policy: upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+# Permitir que recursos estáticos sejam armazenados em cache por mais tempo
+/images/*
+  Cache-Control: public, max-age=86400, immutable
+/styles/*
+  Cache-Control: public, max-age=86400, immutable
+/videos/*
+  Cache-Control: public, max-age=86400, immutable
+/favicon.svg
+  Cache-Control: public, max-age=86400, immutable
+  
+# Arquivos importantes para SEO
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
+  
+# Habilitar CORS para recursos necessários
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400, immutable
+  
+# Adicionar cabeçalhos para melhorar a performance e SEO
+/*
+  Link: </styles/global.css>; rel=preload; as=style
+  Link: </images/logo.png>; rel=preload; as=image
+  Accept-CH: DPR, Width, Viewport-Width, Device-Memory, RTT, Downlink, ECT
+  X-DNS-Prefetch-Control: on
+/sitemap.xml
+  Cache-Control: public, max-age=43200
+/robots.txt
+  Cache-Control: public, max-age=43200

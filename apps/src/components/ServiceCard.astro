@@ -1,0 +1,212 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  icon?: string;
+  slug?: string;
+}
+
+const { title, description, image, icon, slug = "#" } = Astro.props;
+
+// Gerando um ID único baseado no título para uso em aria-labelledby
+const titleId = `title-${title.toLowerCase().replace(/\s+/g, '-')}`;
+
+// Limita o texto da descrição para evitar ultrapassar o tamanho ideal para SEO
+const maxDescriptionLength = 160;
+const shortDescription = description.length > maxDescriptionLength 
+  ? description.substring(0, maxDescriptionLength) + '...' 
+  : description;
+---
+
+<div class="service-card" itemscope itemtype="https://schema.org/Service">
+  {image && 
+    <div class="service-img-container">
+      <div class="service-img" style={`background-image: url(${image})`} role="img" aria-label={`Imagem de ${title}`}>
+        <div class="service-overlay"></div>
+      </div>
+    </div>
+  }
+  
+  <div class="service-content">
+    {icon && <div class="service-icon" aria-hidden="true">
+      <i class={`icon-${icon}`}></i>
+    </div>}
+    <h3 id={titleId} itemprop="name">{title}</h3>
+    <div class="service-divider"></div>
+    <p itemprop="description">{description}</p>
+    <a href="/servicos" class="btn-service" aria-describedby={titleId}>Detalhes exclusivos <span class="arrow">→</span></a>
+  </div>
+</div>
+
+<style>
+  .service-card {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    height: 100%;
+    border: 1px solid rgba(84, 84, 84, 0.05);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .service-img {
+    height: 300px; /* Imagem maior para maior impacto visual */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s ease-out;
+  }
+  
+  .service-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
+    z-index: 1;
+  }
+  
+  .service-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(204, 192, 182, 0);
+    transition: all 0.6s ease;
+    z-index: 2;
+  }
+  
+  .service-card:hover .service-overlay {
+    background-color: rgba(204, 192, 182, 0.12);
+  }
+  
+  .service-card:hover .service-img {
+    transform: scale(1.05);
+    transition: transform 8s cubic-bezier(0.215, 0.610, 0.355, 1);
+  }
+  
+  .service-content {
+    padding: 50px; /* Mais espaço interno */
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .service-icon {
+    font-size: 2.2rem;
+    color: var(--color-taupe);
+    margin-bottom: 30px;
+    text-align: center;
+    transition: transform 0.5s ease;
+    opacity: 0.85;
+  }
+  
+  .service-card:hover .service-icon {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  
+  .service-content h3 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: var(--letter-spacing-elegant);
+    position: relative;
+    color: var(--color-dark);
+    transition: color 0.4s ease;
+  }
+  
+  .service-card:hover h3 {
+    color: var(--color-secondary);
+  }
+  
+  .service-divider {
+    width: 45px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-taupe), rgba(204, 192, 182, 0.2));
+    margin-bottom: 30px;
+    transition: all 0.5s ease;
+    opacity: 0.7;
+  }
+  
+  .service-card:hover .service-divider {
+    width: 70px;
+    opacity: 0.9;
+  }
+  
+  .service-content p {
+    color: var(--color-text);
+    line-height: 2;
+    margin-bottom: 35px;
+    flex-grow: 1;
+    font-size: 1.05rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+  }
+  
+  .btn-service {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 400;
+    position: relative;
+    color: var(--color-button);
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    align-self: flex-start;
+    transition: all 0.4s ease;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+  }
+  
+  .btn-service .arrow {
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  .btn-service:hover {
+    color: #B4A89E; /* Versão mais escura do taupe (#CCC0B6) */
+    border-bottom-color: var(--color-button);
+  }
+  
+  .btn-service:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  @media (max-width: 768px) {
+    .service-content {
+      padding: 40px;
+    }
+    
+    .service-content h3 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .service-content {
+      padding: 30px;
+    }
+    
+    .service-img {
+      height: 250px;
+    }
+  }
+</style>

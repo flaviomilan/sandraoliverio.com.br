@@ -1,0 +1,29 @@
+# Arquivo robots.txt para sandraoliverio.com.br
+# Diretrizes para os rastreadores dos mecanismos de busca
+
+User-agent: *
+Allow: /
+
+# Desabilitar acesso a arquivos específicos
+User-agent: *
+Disallow: /admin/
+Disallow: /_redirects
+Disallow: /_headers
+Disallow: /*.json$
+Disallow: /*.js.map$
+Disallow: /*.css.map$
+
+# Permitir que os buscadores sigam os links com parâmetros rastreáveis
+User-agent: *
+Allow: /*?
+
+# Diretivas específicas para Googlebot
+User-agent: Googlebot
+Disallow: /*.svg$
+
+# Diretivas específicas para Bingbot
+User-agent: Bingbot
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://sandraoliverio.com.br/sitemap.xml

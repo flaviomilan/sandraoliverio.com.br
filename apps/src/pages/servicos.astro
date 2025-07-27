@@ -1,0 +1,404 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE } from '../constants';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const pageTitle = "Serviços de Assessoria para Eventos e Casamentos | Sandra Oliverio";
+const pageDescription = "Conheça nossos serviços exclusivos para casamentos, festas de 15 anos e eventos corporativos. Trabalhamos com os melhores fornecedores de Ribeirão Preto para criar experiências únicas.";
+
+// Definindo os itens do breadcrumb
+const breadcrumbItems = [
+  { text: 'Home', url: '/' },
+  { text: 'Serviços', url: '/servicos', current: true }
+];
+
+// Schema.org para serviços de casamento
+const weddingServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "WeddingService",
+  "name": "Sandra Oliverio Assessoria e Cerimonial de Casamentos",
+  "url": "https://sandraoliverio.com.br/servicos",
+  "description": "Serviços completos de planejamento, organização e cerimonial para casamentos de luxo em Ribeirão Preto e região",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Sandra Oliverio Assessoria",
+    "url": "https://sandraoliverio.com.br"
+  },
+  "additionalType": "WeddingPlanningService",
+  "availableAtOrFrom": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ribeirão Preto",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  }
+};
+
+// Schema.org para serviços de Festas de 15 Anos
+const debutanteServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "EventService",
+  "name": "Sandra Oliverio Assessoria para Festas de 15 Anos",
+  "url": "https://sandraoliverio.com.br/servicos#festas-15-anos",
+  "description": "Serviços completos de planejamento e organização de festas de 15 anos sofisticadas e personalizadas em Ribeirão Preto e região",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Sandra Oliverio Assessoria",
+    "url": "https://sandraoliverio.com.br"
+  },
+  "availableAtOrFrom": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ribeirão Preto",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  }
+};
+
+// Schema.org para serviços de Eventos Corporativos
+const corporateServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "BusinessService",
+  "name": "Sandra Oliverio Assessoria para Eventos Corporativos",
+  "url": "https://sandraoliverio.com.br/servicos#eventos-corporativos",
+  "description": "Serviços especializados para organização de eventos corporativos profissionais, conferências e reuniões empresariais em Ribeirão Preto e região",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Sandra Oliverio Assessoria",
+    "url": "https://sandraoliverio.com.br"
+  },
+  "serviceType": "Corporate Event Planning",
+  "availableAtOrFrom": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ribeirão Preto",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  }
+};
+
+// Schema.org para serviços de Assessoria Personalizada
+const consultingServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Assessoria Personalizada em Planejamento de Eventos - Sandra Oliverio",
+  "url": "https://sandraoliverio.com.br/servicos#assessoria-personalizada",
+  "description": "Serviços de assessoria especializada para planejamento e organização de eventos sociais e corporativos",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Sandra Oliverio Assessoria",
+    "url": "https://sandraoliverio.com.br"
+  },
+  "serviceType": "Event Planning",
+  "availableAtOrFrom": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ribeirão Preto",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  }
+};
+---
+
+<MainLayout 
+  title={pageTitle}
+  description={pageDescription}
+  ogType="website"
+  image="/images/casamento-1.avif"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(weddingServiceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(debutanteServiceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(corporateServiceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(consultingServiceSchema)} />
+  
+  <Breadcrumbs items={breadcrumbItems} />
+  
+  <section class="page-header" style="background-image: url('/images/casamento.avif')" aria-label="Banner da página de serviços">
+    <div class="container">
+      <h1>Nossos Serviços</h1>
+      <div class="header-divider">
+        <span></span>
+        <div class="divider-ornament"></div>
+        <span></span>
+      </div>
+      <p class="header-subtitle">Experiência e dedicação para tornar seu evento único e inesquecível</p>
+    </div>
+  </section>
+  
+  <Breadcrumbs items={breadcrumbItems} />
+  
+  <section class="services-section">
+    <div class="container">
+      <div class="services-intro">
+        <p>Na Sandra Oliverio Assessoria, oferecemos uma gama completa de serviços para atender às suas necessidades específicas. Cada evento é tratado com exclusividade, garantindo que todos os detalhes reflitam a sua personalidade e desejos.</p>
+      </div>
+      
+      <div class="service-details">
+        <div class="service-item">
+          <div class="service-image" style="background-image: url('/images/casamento-1.avif')" role="img" aria-label="Foto de um casamento organizado por Sandra Oliverio"></div>
+          <div class="service-content">
+            <h2 id="casamentos">Casamentos</h2>
+            <p>Transformamos seu grande dia em um momento inesquecível, cuidando de cada detalhe para que você possa aproveitar plenamente esta ocasião tão especial.</p>
+            
+            <h3>O que oferecemos:</h3>
+            <ul>
+              <li>Assessoria completa desde o planejamento inicial até o dia do evento</li>
+              <li>Seleção dos melhores fornecedores</li>
+              <li>Elaboração de cronograma</li>
+              <li>Coordenação da cerimônia e recepção</li>
+              <li>Gerenciamento de convidados</li>
+              <li>Assistência com decoração, buffet, música e todos os detalhes</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="service-item reverse">
+          <div class="service-image" style="background-image: url('/images/15anos.avif')"></div>
+          <div class="service-content">
+            <h2 id="festas-15-anos">Festas de 15 Anos</h2>
+            <p>Criamos uma celebração que reflete a personalidade da debutante, com elegância e sofisticação, tornando este momento único e inesquecível.</p>
+            
+            <h3>O que oferecemos:</h3>
+            <ul>
+              <li>Planejamento personalizado do evento</li>
+              <li>Seleção do local e fornecedores</li>
+              <li>Coordenação da coreografia e apresentações</li>
+              <li>Assistência com convites e lembranças</li>
+              <li>Supervisão de todos os detalhes no dia do evento</li>
+              <li>Gerenciamento de cronograma e logística</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-image" style="background-image: url('/images/corporativo.avif')"></div>
+          <div class="service-content">
+            <h2 id="eventos-corporativos">Eventos Corporativos</h2>
+            <p>Organizamos eventos profissionais que valorizam a imagem da sua empresa, com atenção aos detalhes que fazem toda a diferença.</p>
+            
+            <h3>O que oferecemos:</h3>
+            <ul>
+              <li>Planejamento estratégico do evento</li>
+              <li>Seleção de locais adequados ao perfil corporativo</li>
+              <li>Coordenação de fornecedores especializados</li>
+              <li>Gerenciamento de orçamento</li>
+              <li>Logística de transporte e hospedagem</li>
+              <li>Supervisão completa da execução do evento</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="service-item reverse">
+          <div class="service-image" style="background-image: url('/images/image.png')"></div>
+          <div class="service-content">
+            <h2 id="assessoria-personalizada">Assessoria Personalizada</h2>
+            <p>Oferecemos assessoria especializada para aqueles que desejam participar ativamente da organização do seu evento, com suporte profissional nos aspectos mais desafiadores.</p>
+            
+            <h3>O que oferecemos:</h3>
+            <ul>
+              <li>Orientação exclusiva e personalizada</li>
+              <li>Recomendação de fornecedores qualificados</li>
+              <li>Análise e revisão de contratos</li>
+              <li>Elaboração de cronograma detalhado</li>
+              <li>Orientação sobre tendências e conceitos de decoração</li>
+              <li>Assistência pontual nas etapas mais complexas do evento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .page-header h1 {
+    color: white;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 20px;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-divider span {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .header-divider span:last-child {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.6));
+  }
+  
+  .divider-ornament {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+    margin: 0 15px;
+    position: relative;
+  }
+  
+  .header-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .services-section {
+    padding: 80px 0;
+  }
+  
+  .services-intro {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
+  .service-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 80px;
+    align-items: center;
+  }
+  
+  .service-item.reverse {
+    grid-template-columns: 1fr 1fr;
+    direction: rtl;
+  }
+  
+  .service-item.reverse .service-content {
+    direction: ltr;
+  }
+  
+  .service-image {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .service-content h2 {
+    color: var(--color-secondary);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .service-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-primary);
+  }
+  
+  .service-content h3 {
+    font-size: 1.2rem;
+    margin: 25px 0 15px;
+    color: var(--color-secondary);
+  }
+  
+  .service-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .service-content li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .service-content li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+  }
+  
+  .custom-package {
+    text-align: center;
+    background-color: var(--color-light);
+    padding: 50px;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+  
+  .custom-package h2 {
+    margin-bottom: 20px;
+  }
+  
+  .custom-package p {
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @media (max-width: 992px) {
+    .service-item, .service-item.reverse {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      direction: ltr;
+    }
+    
+    .service-image {
+      height: 300px;
+    }
+  }
+</style>

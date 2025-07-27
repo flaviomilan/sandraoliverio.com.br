@@ -1,0 +1,161 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE, CONTACT } from '../constants';
+
+const pageTitle = "Página Não Encontrada | Sandra Oliverio - Assessoria";
+const pageDescription = "Ops! A página que você está procurando não foi encontrada. Volte para a página inicial e continue a navegar em nosso site.";
+
+// Construindo a URL do WhatsApp
+const whatsappNumber = CONTACT.WHATSAPP.PHONE_NUMBER;
+const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+---
+
+<MainLayout 
+  title={pageTitle}
+  description={pageDescription}
+  ogType="website"
+  image="/images/logo.png"
+>
+  <section class="error-section">
+    <div class="container">
+      <div class="error-content">
+        <div class="error-number">404</div>
+        <h1>Página Não Encontrada</h1>
+        <div class="divider-ornament"></div>
+        <p>Desculpe, a página que você está procurando não existe ou foi movida.</p>
+        <p>Enquanto isso, você pode...</p>
+        
+        <div class="error-options">
+          <a href="/" class="btn-primary">Voltar para a página inicial</a>
+          <a href="/servicos" class="btn-secondary">Ver nossos serviços</a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">Falar conosco</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .error-section {
+    padding: 120px 0;
+    text-align: center;
+    background-color: var(--color-light);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .error-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .error-number {
+    font-size: 8rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    line-height: 1;
+    font-family: var(--font-primary);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-weight: 300;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--color-dark);
+  }
+
+  .divider-ornament {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-gold);
+    transform: rotate(45deg);
+    margin: 0 auto 30px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .divider-ornament::before, .divider-ornament::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(to right, rgba(212, 175, 55, 0.2), var(--color-gold));
+  }
+
+  .divider-ornament::before {
+    right: 15px;
+  }
+
+  .divider-ornament::after {
+    left: 15px;
+    background: linear-gradient(to left, rgba(212, 175, 55, 0.2), var(--color-gold));
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--color-text);
+  }
+
+  .error-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-gold) 0%, #e2c481 50%, var(--color-gold) 100%);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--color-gold);
+    color: var(--color-dark);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .error-section {
+      padding: 80px 0;
+    }
+
+    .error-number {
+      font-size: 6rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .error-options {
+      flex-direction: column;
+      width: 80%;
+      margin: 30px auto 0;
+    }
+  }
+</style>

@@ -1,0 +1,272 @@
+---
+const { 
+  title = "Sandra Oliverio - Assessoria",
+  description = "Sandra Oliverio Cerimonial e Assessoria de Casamentos - Criando momentos inesquecíveis com elegância e sofisticação. Serviços exclusivos para eventos e casamentos de luxo em Ribeirão Preto e região.",
+  canonical,
+  image = "/images/sandraoliverio.avif",
+  ogType = "website"
+} = Astro.props;
+
+// Importando constantes
+import { CONTACT, SITE } from '../constants';
+
+// Usando constante do número do WhatsApp
+const whatsappNumber = CONTACT.WHATSAPP.PHONE_NUMBER;
+
+// URL Canônica
+const canonicalURL = canonical || new URL(Astro.url.pathname, SITE.URL).href;
+
+// Data atual para schema
+const currentDate = new Date().toISOString();
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <!-- Meta tags SEO -->
+    <meta name="description" content={description} />
+    <meta name="keywords" content="cerimonial de casamento, assessoria de casamento, casamento de luxo, casamento elegante, sandra oliverio, cerimonialista, eventos corporativos, festas de 15 anos, ribeirão preto" />
+    <meta name="author" content="Sandra Oliverio" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, SITE.URL).href} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Sandra Oliverio" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, SITE.URL).href} />
+    
+    <!-- Structured Data - JSON-LD - EventPlanner -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://www.sandraoliverio.com.br/#eventplanner",
+        "name": "Sandra Oliverio",
+        "jobTitle": "Cerimonialista e Wedding Planner",
+        "url": "https://www.sandraoliverio.com.br",
+        "sameAs": [
+          "https://www.instagram.com/sandra_oliverio/",
+          "https://www.facebook.com/sandraoliverio.assessoria"
+        ],
+        "knowsAbout": ["Planejamento de Casamentos", "Organização de Eventos", "Cerimonial", "Gestão de Fornecedores", "Decoração de Eventos"],
+        "worksFor": {
+          "@type": "LocalBusiness",
+          "name": "Sandra Oliverio Assessoria",
+          "url": "https://www.sandraoliverio.com.br"
+        },
+        "hasCredential": "Especialista em eventos de luxo com mais de 10 anos de experiência",
+        "image": "https://www.sandraoliverio.com.br/images/sandra-oliverio.avif"
+      }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/global.css">
+    <style>
+      .logo img {
+        max-width: 220px;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+      }
+      
+      header.scrolled .logo img {
+        max-width: 180px;
+      }
+      
+      @media (max-width: 768px) {
+        .logo img {
+          max-width: 180px;
+        }
+        
+        header.scrolled .logo img {
+          max-width: 150px;
+        }
+      }
+      
+      @media (max-width: 580px) {
+        .logo img {
+          max-width: 160px;
+        }
+        
+        header.scrolled .logo img {
+          max-width: 140px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <a href="/" title="Página inicial - Sandra Oliverio">
+            <img src="/images/logo.png" alt="Logo Sandra Oliverio - Assessoria de Eventos e Casamentos" width="220" height="auto" />
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/servicos">Serviços</a></li>
+            <li><a href="/depoimentos">Depoimentos</a></li>
+            <li><a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="btn-contato">Contato</a></li>
+          </ul>
+          <button class="hamburger-btn" aria-label="Menu de navegação">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <h2>Sandra Oliverio</h2>
+        <button class="mobile-close" aria-label="Fechar menu">×</button>
+      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/sobre">Sobre</a></li>
+        <li><a href="/servicos">Serviços</a></li>
+        <li><a href="/depoimentos">Depoimentos</a></li>
+        <li><a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="btn-contato-mobile">Contato</a></li>
+      </ul>
+    </div>
+    <div class="mobile-overlay"></div>
+    
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <h3>Sandra Oliverio</h3>
+            <p>Assessoria</p>
+          </div>
+          <div class="footer-contact">
+            <h4>Contato</h4>
+            <p>Telefone: (16) 99999-9999</p>
+            <p>Email: contato@sandraoliverio.com.br</p>
+            <p>Ribeirão Preto - SP</p>
+          </div>
+          <div class="footer-social">
+            <h4>Redes Sociais</h4>
+            <div class="social-icons">
+              <a href="https://instagram.com/sandra_oliverio" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Sandra Oliverio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp da Sandra Oliverio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; {new Date().getFullYear()} Sandra Oliverio. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      import '../utils/main.js';
+    </script>
+    
+    <!-- Schema.org JSON-LD markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Sandra Oliverio Assessoria",
+        "image": "https://sandraoliverio.com.br/images/logo.png",
+        "logo": "https://sandraoliverio.com.br/images/logo.png",
+        "url": "https://sandraoliverio.com.br",
+        "telephone": "(16) 99999-9999",
+        "email": "contato@sandraoliverio.com.br",
+        "description": "Cerimonial e assessoria para casamentos e eventos de luxo. Criando momentos inesquecíveis com elegância e sofisticação.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ribeirão Preto",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -21.177,
+          "longitude": -47.810
+        },
+        "sameAs": [
+          "https://instagram.com/sandra_oliverio",
+          "https://wa.me/${whatsappNumber}"
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "areaServed": ["Ribeirão Preto", "São Paulo"]
+      }
+    </script>
+    
+    <!-- Schema para serviços -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Cerimonial de Casamento",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Sandra Oliverio Assessoria"
+        },
+        "serviceOutput": {
+          "@type": "ItemList",
+          "name": "Serviços de Eventos",
+          "itemListElement": [
+            {
+              "@type": "Service",
+              "name": "Cerimônias de Casamento",
+              "description": "Concebemos ocasiões memoráveis que transcendem o ordinário, onde cada elemento é meticulosamente selecionado para harmonizar-se em uma experiência sensorial refinada e singular."
+            },
+            {
+              "@type": "Service",
+              "name": "Celebrações de 15 Anos",
+              "description": "Elaboramos celebrações de 15 anos que combinam tradição e modernidade, criando ambientes sofisticados que refletem a personalidade e elegância da debutante."
+            },
+            {
+              "@type": "Service",
+              "name": "Eventos Corporativos Distintivos",
+              "description": "Desenvolvemos experiências corporativas que elevam o prestígio da sua marca, com atenção primorosa aos detalhes e serviço impecável, adequados ao mais exigente público."
+            }
+          ]
+        }
+      }
+    </script>
+  </body>
+</html>
