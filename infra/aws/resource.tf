@@ -4,6 +4,7 @@
 
 resource "aws_acm_certificate" "cert" {
   domain_name       = var.domain
+  subject_alternative_names = ["www.${var.domain}"]
   validation_method = "DNS"
 
   tags = local.project_tags
@@ -15,7 +16,7 @@ resource "aws_acm_certificate" "cert" {
 
 resource "aws_acm_certificate_validation" "cert" {
   certificate_arn         = aws_acm_certificate.cert.arn
-  validation_record_fqdns = [for record in aws_route53_record.www : record.fqdn]
+  validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
 }
 
 # --------------------------------------------------------------
@@ -123,7 +124,7 @@ resource "aws_cloudfront_response_headers_policy" "security_headers" {
     }
 
     access_control_allow_origins {
-      items = ["https://sandraoliverio.com.br"]
+      items = ["https://sandraoliverio.com.br", "https://www.sandraoliverio.com.br"]
     }
 
     access_control_expose_headers {
@@ -160,7 +161,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     response_page_path    = "/index.html"
   }
 
-  aliases = [var.domain]
+  aliases = [var.domain, "www.${var.domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -218,7 +219,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cert.arn
+    acm_certificate_arn = aws_acm_certificate_validation.cert.certificate_arn
     ssl_support_method  = "sni-only"
   }
 
@@ -245,7 +246,7 @@ locals {
   hosted_zone_id = var.create_hosted_zone ? aws_route53_zone.main[0].zone_id : data.aws_route53_zone.main[0].zone_id
 }
 
-resource "aws_route53_record" "www" {
+resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.cert.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
@@ -265,6 +266,18 @@ resource "aws_route53_record" "www" {
 resource "aws_route53_record" "site" {
   zone_id = local.hosted_zone_id
   name    = var.domain
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.s3_distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = local.hosted_zone_id
+  name    = "www.${var.domain}"
   type    = "A"
 
   alias {
