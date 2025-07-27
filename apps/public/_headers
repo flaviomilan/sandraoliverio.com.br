@@ -52,7 +52,7 @@
 # Habilitar CORS para recursos necessários
 /fonts/*
   Access-Control-Allow-Origin: *
-  Cache-Control: public, max-age=86400, immutable
+  Cache-Control: public, max-age=31536000, immutable
   
 # Adicionar cabeçalhos para melhorar a performance e SEO
 /*

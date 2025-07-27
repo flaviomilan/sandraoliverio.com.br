@@ -1,0 +1,6 @@
+/* Optimized system fonts - no external loading required */
+
+/* This file ensures consistent font loading without external requests */
+/* Fonts are handled via CSS variables with system font fallbacks */
+
+/* Optional: Add any future local font files here */

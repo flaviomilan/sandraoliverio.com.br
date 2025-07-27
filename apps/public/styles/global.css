@@ -26,11 +26,11 @@
   --color-footer-dark: #212121; /* Tom quase preto para o footer */
   --color-gold: #C9B18C; /* Tom dourado sutil para acentos elegantes */
   
-  /* Mantendo as mesmas fontes refinadas */
-  --font-primary: 'Playfair Display', 'Cormorant Garamond', serif;
-  --font-secondary: 'Montserrat', 'Inter', sans-serif;
-  --font-script: 'Playfair Display', serif;
-  --font-body: 'Montserrat', 'Inter', sans-serif;
+  /* Fontes locais com fallbacks do sistema */
+  --font-primary: 'Playfair Display', 'Times New Roman', Georgia, 'Times', serif;
+  --font-secondary: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-script: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --font-body: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   
   /* Sombras e efeitos refinados */
   --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.03);

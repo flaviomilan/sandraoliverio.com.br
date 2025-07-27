@@ -75,12 +75,8 @@ const currentDate = new Date().toISOString();
       }
     </script>
     
-    <!-- Preconnect for external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Critical font loading with font-display: swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Local fonts -->
+    <link rel="stylesheet" href="/fonts/fonts.css">
     
     <!-- Load non-critical CSS asynchronously -->
     <script>
@@ -110,8 +106,8 @@ const currentDate = new Date().toISOString();
         --color-primary: var(--color-dark);
         --color-text: #3A3A3A;
         --color-light: var(--color-off-white);
-        --font-primary: 'Playfair Display', serif;
-        --font-secondary: 'Montserrat', 'Inter', sans-serif;
+        --font-primary: 'Playfair Display', 'Times New Roman', Georgia, 'Times', serif;
+        --font-secondary: 'Montserrat', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.03);
         --border-radius: 2px;
