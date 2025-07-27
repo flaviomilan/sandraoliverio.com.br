@@ -23,7 +23,7 @@ resource "aws_acm_certificate_validation" "cert" {
 # --------------------------------------------------------------
 
 resource "aws_cloudfront_function" "rewrite_index" {
-  name    = "rewrite-index"
+  name    = "rewrite-index-sandraoliverio-com-br"
   runtime = "cloudfront-js-1.0"
   comment = "Rewrite URIs to index.html"
   publish = true
