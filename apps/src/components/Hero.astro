@@ -8,22 +8,29 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
 
 <section class="hero" aria-label="Banner principal">
   <div class="video-container">
-    <video 
-      autoplay 
-      muted 
-      loop 
-      playsinline 
-      aria-hidden="true" 
-      preload="none" 
-      poster="/images/casamento.avif" 
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true"
+      preload="none"
+      poster="/images/casamento.avif"
       data-astro-cid-bbe6dxrz
       loading="lazy"
       oncanplaythrough="this.style.opacity='1'"
       style="opacity: 0; transition: opacity 0.5s ease-in-out;"
     >
-      <source src="/videos/hero-video.mp4" type="video/mp4">
-      <!-- Fallback para quando o vídeo não carregar -->
-      <img src="/images/casamento.avif" alt="Cerimonial de casamento elegante" width="1920" height="1080" loading="eager" fetchpriority="high">
+      <source src="/videos/hero-video.mp4" type="video/mp4" />
+
+      <img
+        src="/images/casamento.avif"
+        alt="Cerimonial de casamento elegante"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+      />
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -40,8 +47,19 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     <p>Criamos momentos únicos e sofisticados, onde cada detalhe reflete distinção e elegância.</p>
     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-hero">
       <span>Reserve um atendimento personalizado</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
+        ></path>
       </svg>
     </a>
   </div>
@@ -54,23 +72,24 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     if (video) {
       // Define preload apenas após o load da página
       video.preload = 'auto';
-      
+
       // Força o load do vídeo
       video.load();
-      
+
       // Quando o vídeo estiver pronto para reproduzir, faz o fade in
       video.addEventListener('canplaythrough', () => {
         video.style.opacity = '1';
       });
-      
+
       // Fallback: se demorar muito para carregar, remove o vídeo e mantém apenas o poster
       const loadTimeout = setTimeout(() => {
-        if (video.readyState < 4) { // Se não carregou completamente
+        if (video.readyState < 4) {
+          // Se não carregou completamente
           video.style.display = 'none';
           console.log('Vídeo removido devido ao tempo limite de carregamento');
         }
       }, 5000); // 5 segundos timeout
-      
+
       // Limpa o timeout se o vídeo carregar
       video.addEventListener('canplaythrough', () => {
         clearTimeout(loadTimeout);
@@ -91,7 +110,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     text-align: center;
     overflow: hidden;
   }
-  
+
   .video-container {
     position: absolute;
     top: 0;
@@ -113,7 +132,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     min-width: 100%;
     min-height: 100%;
   }
-  
+
   .hero-overlay {
     position: absolute;
     top: 0;
@@ -124,7 +143,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     z-index: 1;
     backdrop-filter: blur(0.5px);
   }
-  
+
   .hero-content {
     position: relative;
     z-index: 2;
@@ -145,15 +164,21 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  
+
   .decorative-element {
     position: relative;
     margin-bottom: 40px;
   }
-  
+
   .accent-line {
     width: 70px;
     height: 1px;
@@ -162,7 +187,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     position: relative;
     opacity: 0.8;
   }
-  
+
   .accent-line::before,
   .accent-line::after {
     content: '';
@@ -171,21 +196,21 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     background: var(--color-taupe);
     opacity: 0.6;
   }
-  
+
   .accent-line::before {
     width: 25px;
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .accent-line::after {
     width: 25px;
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .hero h1 {
     font-family: var(--font-primary);
     font-size: 4.2rem;
@@ -203,7 +228,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     font-style: italic;
     color: var(--color-taupe);
   }
-  
+
   .elegant-divider {
     display: flex;
     align-items: center;
@@ -211,17 +236,17 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     margin: 0 auto 40px;
     width: 60%;
   }
-  
+
   .elegant-divider span {
     flex-grow: 1;
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5));
   }
-  
+
   .elegant-divider span:last-child {
     background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.5));
   }
-  
+
   .elegant-divider .ornament {
     width: 6px;
     height: 6px;
@@ -231,7 +256,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     position: relative;
     opacity: 0.8;
   }
-  
+
   .hero p {
     font-size: 1.4rem;
     margin-bottom: 65px;
@@ -244,7 +269,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     color: rgba(255, 255, 255, 0.95);
     font-family: var(--font-primary);
   }
-  
+
   .btn-hero {
     display: inline-flex;
     align-items: center;
@@ -277,11 +302,11 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: -1;
   }
-  
+
   .btn-hero:hover::before {
     width: 100%;
   }
-  
+
   .btn-hero:hover {
     color: white;
     transform: translateY(-5px);
@@ -296,16 +321,16 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
   .btn-hero:hover svg {
     transform: translateX(8px);
   }
-  
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 3.2rem;
     }
-    
+
     .hero p {
       font-size: 1.2rem;
     }
-    
+
     .elegant-divider {
       width: 80%;
     }
@@ -315,11 +340,11 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     .hero h1 {
       font-size: 2.4rem;
     }
-    
+
     .hero p {
       font-size: 1.1rem;
     }
-    
+
     .btn-hero {
       padding: 15px 35px;
       font-size: 0.8rem;

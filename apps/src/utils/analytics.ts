@@ -1,7 +1,7 @@
 // Utilitários para Google Analytics 4
 // Funções helper para tracking de eventos personalizados
 
-import type { GAEventData, GAEventParams } from '../types/analytics';
+import type { GAEventData } from '../types/analytics';
 import { ANALYTICS } from '../constants';
 
 /**
@@ -17,7 +17,7 @@ export function trackEvent(eventData: GAEventData): void {
   }
 
   window.gtag('event', eventData.event_name, eventData.parameters);
-  
+
   if (ANALYTICS.DEBUG_MODE) {
     console.log('GA Event tracked:', eventData);
   }
@@ -34,8 +34,8 @@ export const analyticsEvents = {
       parameters: {
         event_category: 'engagement',
         service_type: serviceType,
-        event_label: 'contact_form'
-      }
+        event_label: 'contact_form',
+      },
     });
   },
 
@@ -44,8 +44,8 @@ export const analyticsEvents = {
       event_name: 'whatsapp_click',
       parameters: {
         event_category: 'engagement',
-        event_label: source || 'unknown'
-      }
+        event_label: source || 'unknown',
+      },
     });
   },
 
@@ -54,8 +54,8 @@ export const analyticsEvents = {
       event_name: 'phone_click',
       parameters: {
         event_category: 'engagement',
-        event_label: 'header_phone'
-      }
+        event_label: 'header_phone',
+      },
     });
   },
 
@@ -64,8 +64,8 @@ export const analyticsEvents = {
       event_name: 'email_click',
       parameters: {
         event_category: 'engagement',
-        event_label: 'footer_email'
-      }
+        event_label: 'footer_email',
+      },
     });
   },
 
@@ -76,8 +76,8 @@ export const analyticsEvents = {
       parameters: {
         event_category: 'content',
         service_type: serviceName,
-        event_label: 'service_card'
-      }
+        event_label: 'service_card',
+      },
     });
   },
 
@@ -87,8 +87,8 @@ export const analyticsEvents = {
       event_name: 'testimonial_view',
       parameters: {
         event_category: 'content',
-        event_label: clientName || 'testimonial'
-      }
+        event_label: clientName || 'testimonial',
+      },
     });
   },
 
@@ -98,10 +98,10 @@ export const analyticsEvents = {
       parameters: {
         event_category: 'engagement',
         value: imageIndex,
-        event_label: 'instagram_gallery'
-      }
+        event_label: 'instagram_gallery',
+      },
     });
-  }
+  },
 };
 
 /**
@@ -118,6 +118,6 @@ export function setCustomDimensions(dimensions: Record<string, string>): void {
   if (!isAnalyticsReady()) return;
 
   window.gtag!('config', ANALYTICS.GA_MEASUREMENT_ID!, {
-    custom_map: dimensions
+    custom_map: dimensions,
   });
 }

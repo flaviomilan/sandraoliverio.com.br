@@ -1,7 +1,7 @@
 // Inicializando o lazy loading
 import { setupLazyLoading } from './lazyLoading.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Configurando o lazy loading
   setupLazyLoading();
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateHeader() {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY > 100) {
         header.classList.add('scrolled');
       } else {
@@ -33,17 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         header.classList.remove('header-hidden');
       }
-      
+
       lastScrollY = currentScrollY;
       ticking = false;
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 
   // Função para alternar o menu mobile

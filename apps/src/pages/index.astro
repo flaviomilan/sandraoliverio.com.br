@@ -6,100 +6,122 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import InstagramGallery from '../components/InstagramGallery.astro';
 import { CONTACT, URLS, SITE } from '../constants';
 
-const pageTitle = "Sandra Oliverio - Assessoria de Eventos e Casamentos em Ribeirão Preto";
-const pageDescription = "Cerimonialista com mais de 15 anos de experiência em casamentos e eventos de luxo. Serviços personalizados com elegância e sofisticação em Ribeirão Preto e região.";
+const pageTitle = 'Sandra Oliverio - Assessoria de Eventos e Casamentos em Ribeirão Preto';
+const pageDescription =
+  'Cerimonialista com mais de 15 anos de experiência em casamentos e eventos de luxo. Serviços personalizados com elegância e sofisticação em Ribeirão Preto e região.';
 ---
 
-<MainLayout 
+<MainLayout
   title={pageTitle}
   description={pageDescription}
   ogType="website"
   image="/images/sandraoliverio.avif"
 >
   <Hero />
-  
+
   <section class="services">
     <div class="container">
       <div class="section-title">
         <h2>Serviços Exclusivos</h2>
       </div>
-      
+
       <div class="services-grid">
-        <ServiceCard 
-          title="Cerimônias de Casamento" 
-          description="Concebemos ocasiões memoráveis que transcendem o ordinário, onde cada elemento é meticulosamente selecionado para harmonizar-se em uma experiência sensorial refinada e singular." 
-          image="/images/casamento-1.avif" 
+        <ServiceCard
+          title="Cerimônias de Casamento"
+          description="Concebemos ocasiões memoráveis que transcendem o ordinário, onde cada elemento é meticulosamente selecionado para harmonizar-se em uma experiência sensorial refinada e singular."
+          image="/images/casamento-1.avif"
         />
-        
-        <ServiceCard 
-          title="Celebrações de 15 Anos" 
-          description="Elaboramos celebrações de 15 anos que combinam tradição e modernidade, criando ambientes sofisticados que refletem a personalidade e elegância da debutante." 
-          image="/images/15anos.avif" 
+
+        <ServiceCard
+          title="Celebrações de 15 Anos"
+          description="Elaboramos celebrações de 15 anos que combinam tradição e modernidade, criando ambientes sofisticados que refletem a personalidade e elegância da debutante."
+          image="/images/15anos.avif"
         />
-        
-        <ServiceCard 
-          title="Eventos Corporativos Distintivos" 
-          description="Desenvolvemos experiências corporativas que elevam o prestígio da sua marca, com atenção primorosa aos detalhes e serviço impecável, adequados ao mais exigente público." 
-          image="/images/corporativo.avif" 
+
+        <ServiceCard
+          title="Eventos Corporativos Distintivos"
+          description="Desenvolvemos experiências corporativas que elevam o prestígio da sua marca, com atenção primorosa aos detalhes e serviço impecável, adequados ao mais exigente público."
+          image="/images/corporativo.avif"
         />
       </div>
     </div>
   </section>
-  
+
   <section class="about-home" style="background-color: var(--color-cream);">
     <div class="container">
       <div class="about-section">
         <div class="about-img">
-          <img src="/images/sandraoliverio.avif" alt="Sandra Oliverio - Assessoria" loading="lazy" width="500" height="600">
+          <img
+            src="/images/sandraoliverio.avif"
+            alt="Sandra Oliverio - Assessoria"
+            loading="lazy"
+            width="500"
+            height="600"
+          />
         </div>
         <div class="about-content">
           <h3>A arte de transformar momentos em memórias inesquecíveis</h3>
-          <p>Desde 2008, Sandra Oliverio estabeleceu uma reputação de excelência no mercado de eventos distintivos. Com uma abordagem refinada e atemporal, conquistou reconhecimento entre os clientes mais exigentes, oferecendo serviços exclusivos que elevam cada celebração a um patamar superior de sofisticação.</p>
-          
+          <p>
+            Desde 2008, Sandra Oliverio estabeleceu uma reputação de excelência no mercado de
+            eventos distintivos. Com uma abordagem refinada e atemporal, conquistou reconhecimento
+            entre os clientes mais exigentes, oferecendo serviços exclusivos que elevam cada
+            celebração a um patamar superior de sofisticação.
+          </p>
+
           <div class="quote">
-            "Transformar visões em realidade sublime requer sensibilidade estética, rigor na execução e compromisso com a excelência em cada detalhe, criando assim experiências verdadeiramente memoráveis."
+            "Transformar visões em realidade sublime requer sensibilidade estética, rigor na
+            execução e compromisso com a excelência em cada detalhe, criando assim experiências
+            verdadeiramente memoráveis."
           </div>
-          
+
           <a href="/sobre" class="btn-hero">Conheça nossa filosofia</a>
         </div>
       </div>
     </div>
   </section>
-  
+
   <section class="testimonials-home">
     <div class="container">
       <div class="section-title">
         <h3>O que nossos clientes dizem</h3>
       </div>
-      
+
       <div class="testimonials-container">
-        <TestimonialCard 
-          name="Marina e Carlos" 
-          feedback="A sofisticação e elegância que Sandra e sua equipe trouxeram ao nosso casamento foram verdadeiramente excepcionais. O evento destacou-se pelo requinte em cada detalhe, proporcionando uma experiência sensorial distinta e inesquecível para nós e nossos convidados." 
+        <TestimonialCard
+          name="Marina e Carlos"
+          feedback="A sofisticação e elegância que Sandra e sua equipe trouxeram ao nosso casamento foram verdadeiramente excepcionais. O evento destacou-se pelo requinte em cada detalhe, proporcionando uma experiência sensorial distinta e inesquecível para nós e nossos convidados."
         />
 
         <TestimonialCard
           name="Juliana Pessoa"
           feedback="A festa de 15 anos da minha filha foi perfeita! A Sandra compreendeu exatamente o que queríamos e superou todas as nossas expectativas. Atenção aos detalhes, profissionalismo e muita sensibilidade."
         />
-        
+
         <a href="/depoimentos" class="btn-more">Veja mais depoimentos exclusivos</a>
       </div>
     </div>
   </section>
-  
-  <InstagramGallery 
-    title="Nossos Momentos no Instagram"
-    showTitle={true}
-    maxPosts={6}
-  />
-  
-  <section class="cta-section" style="background-image: url('/images/casamento.avif')" role="banner" aria-label="Seção de chamada para ação com imagem de casamento elegante">
+
+  <InstagramGallery title="Nossos Momentos no Instagram" showTitle={true} maxPosts={6} />
+
+  <section
+    class="cta-section"
+    style="background-image: url('/images/casamento.avif')"
+    role="banner"
+    aria-label="Seção de chamada para ação com imagem de casamento elegante"
+  >
     <div class="container">
       <div class="cta-content">
         <h3>Pronto para criar uma experiência extraordinária?</h3>
-        <p>Entre em contato para uma assessoria personalizada e descubra como podemos transformar sua visão em uma celebração sofisticada e memorável.</p>
-        <a href={`${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`} target="_blank" class="btn-hero">Reserve um atendimento personalizado</a>
+        <p>
+          Entre em contato para uma assessoria personalizada e descubra como podemos transformar sua
+          visão em uma celebração sofisticada e memorável.
+        </p>
+        <a
+          href={`${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`}
+          target="_blank"
+          class="btn-hero">Reserve um atendimento personalizado</a
+        >
       </div>
     </div>
   </section>
@@ -120,7 +142,7 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     padding-bottom: 5px;
     display: inline-block;
   }
-  
+
   .btn-more::after {
     content: '';
     position: absolute;
@@ -131,21 +153,21 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     background-color: var(--color-dark); /* Mudando para cor mais escura com melhor contraste */
     transition: width 0.4s ease;
   }
-  
+
   .btn-more:hover::after {
     width: 100%;
   }
-  
+
   .btn-more:hover {
     color: var(--color-primary-dark); /* Mudando para cor ainda mais escura no hover */
   }
-  
+
   .testimonials-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   .cta-section {
     position: relative;
     background-size: cover;
@@ -154,7 +176,7 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     color: white;
     text-align: center;
   }
-  
+
   .cta-section::before {
     content: '';
     position: absolute;
@@ -164,14 +186,14 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
   }
-  
+
   .cta-content {
     position: relative;
     z-index: 1;
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
   .cta-content h2,
   .cta-content h3 {
     color: white;
@@ -179,7 +201,7 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     font-family: var(--font-primary);
     letter-spacing: var(--letter-spacing-elegant);
   }
-  
+
   .cta-content p {
     margin-bottom: 40px;
     font-size: 1.2rem;
@@ -187,68 +209,68 @@ const pageDescription = "Cerimonialista com mais de 15 anos de experiência em c
     font-family: var(--font-primary);
     line-height: 1.8;
   }
-  
+
   /* Responsividade para seção services */
   @media (max-width: 768px) {
     .services {
       padding: 80px 0;
     }
-    
+
     .section-title h2 {
       font-size: 2.5rem;
     }
-    
+
     .section-title h3 {
       font-size: 2.2rem;
     }
   }
-  
+
   @media (max-width: 580px) {
     .services {
       padding: 60px 0;
     }
-    
+
     .section-title h2 {
       font-size: 2.2rem;
     }
-    
+
     .section-title h3 {
       font-size: 2rem;
     }
   }
-  
+
   @media (max-width: 480px) {
     .services {
       padding: 50px 0;
     }
-    
+
     .section-title h2,
     .section-title h3 {
       font-size: 1.9rem;
       margin-bottom: 15px;
     }
-    
+
     .cta-content h3 {
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
-    
+
     .cta-content p {
       font-size: 1.1rem;
       margin-bottom: 30px;
     }
   }
-  
+
   @media (max-width: 320px) {
     .section-title h2,
     .section-title h3 {
       font-size: 1.7rem;
     }
-    
+
     .cta-content h3 {
       font-size: 1.6rem;
     }
-    
+
     .cta-content p {
       font-size: 1rem;
     }

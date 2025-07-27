@@ -15,7 +15,7 @@ class WebVitalsReporter {
    */
   init() {
     if (this.initialized) return;
-    
+
     // Verificar se o módulo web-vitals está disponível
     if (typeof webVitals === 'undefined') {
       // Carrega o módulo web-vitals assincronamente
@@ -25,7 +25,7 @@ class WebVitalsReporter {
     } else {
       this.setupVitalsTracking();
     }
-    
+
     this.initialized = true;
   }
 
@@ -36,19 +36,19 @@ class WebVitalsReporter {
     if (typeof webVitals !== 'undefined') {
       // Rastreando LCP (Largest Contentful Paint)
       webVitals.onLCP(this.reportMetric.bind(this));
-      
+
       // Rastreando FID (First Input Delay)
       webVitals.onFID(this.reportMetric.bind(this));
-      
+
       // Rastreando CLS (Cumulative Layout Shift)
       webVitals.onCLS(this.reportMetric.bind(this));
-      
+
       // Rastreando TTFB (Time to First Byte)
       webVitals.onTTFB(this.reportMetric.bind(this));
-      
+
       // Rastreando FCP (First Contentful Paint)
       webVitals.onFCP(this.reportMetric.bind(this));
-      
+
       if (this.debug) {
         console.log('Web Vitals tracking initialized');
       }
@@ -63,7 +63,7 @@ class WebVitalsReporter {
     if (this.debug) {
       console.log(`[Web Vitals] ${metric.name}: ${metric.value}`);
     }
-    
+
     // Adicionar dados da página e usuário
     const data = {
       ...metric,
@@ -71,12 +71,12 @@ class WebVitalsReporter {
       userAgent: navigator.userAgent,
       timestamp: new Date().toISOString(),
     };
-    
+
     // Em produção, enviar para o endpoint analítico
     if (window.location.hostname !== 'localhost') {
       this.sendToAnalytics(data);
     }
-    
+
     // Armazenar localmente para depuração
     this.storeLocally(data);
   }
@@ -95,8 +95,8 @@ class WebVitalsReporter {
         body: JSON.stringify(data),
         keepalive: true,
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       }).catch(e => {
         if (this.debug) console.error('Error sending metrics', e);
       });

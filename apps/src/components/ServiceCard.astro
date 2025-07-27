@@ -7,43 +7,52 @@ interface Props {
   slug?: string;
 }
 
-const { title, description, image, icon, slug = "#" } = Astro.props;
+const { title, description, image, icon, slug = '#' } = Astro.props;
 
 // Gerando um ID único baseado no título para uso em aria-labelledby
 const titleId = `title-${title.toLowerCase().replace(/\s+/g, '-')}`;
 
 // Limita o texto da descrição para evitar ultrapassar o tamanho ideal para SEO
 const maxDescriptionLength = 160;
-const shortDescription = description.length > maxDescriptionLength 
-  ? description.substring(0, maxDescriptionLength) + '...' 
-  : description;
+const shortDescription =
+  description.length > maxDescriptionLength
+    ? description.substring(0, maxDescriptionLength) + '...'
+    : description;
 ---
 
 <div class="service-card" itemscope itemtype="https://schema.org/Service">
-  {image && 
-    <div class="service-img-container">
-      <img 
-        src={image} 
-        alt={`${title} - Serviço de assessoria de eventos`}
-        class="service-img"
-        loading="lazy"
-        width="400"
-        height="300"
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        decoding="async"
-      />
-      <div class="service-overlay"></div>
-    </div>
+  {
+    image && (
+      <div class="service-img-container">
+        <img
+          src={image}
+          alt={`${title} - Serviço de assessoria de eventos`}
+          class="service-img"
+          loading="lazy"
+          width="400"
+          height="300"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          decoding="async"
+        />
+        <div class="service-overlay" />
+      </div>
+    )
   }
-  
+
   <div class="service-content">
-    {icon && <div class="service-icon" aria-hidden="true">
-      <i class={`icon-${icon}`}></i>
-    </div>}
+    {
+      icon && (
+        <div class="service-icon" aria-hidden="true">
+          <i class={`icon-${icon}`} />
+        </div>
+      )
+    }
     <h3 id={titleId} itemprop="name">{title}</h3>
     <div class="service-divider"></div>
     <p itemprop="description">{description}</p>
-    <a href="/servicos" class="btn-service" aria-describedby={titleId}>Detalhes exclusivos <span class="arrow">→</span></a>
+    <a href="/servicos" class="btn-service" aria-describedby={titleId}
+      >Detalhes exclusivos <span class="arrow">→</span></a
+    >
   </div>
 </div>
 
@@ -60,18 +69,18 @@ const shortDescription = description.length > maxDescriptionLength
     height: 100%;
     border: 1px solid rgba(84, 84, 84, 0.05);
   }
-  
+
   .service-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-medium);
   }
-  
+
   .service-img-container {
     position: relative;
     height: 300px;
     overflow: hidden;
   }
-  
+
   .service-img {
     width: 100%;
     height: 100%;
@@ -80,7 +89,7 @@ const shortDescription = description.length > maxDescriptionLength
     transition: all 0.6s ease-out;
     display: block;
   }
-  
+
   .service-img-container::before {
     content: '';
     position: absolute;
@@ -92,7 +101,7 @@ const shortDescription = description.length > maxDescriptionLength
     z-index: 1;
     pointer-events: none;
   }
-  
+
   .service-overlay {
     position: absolute;
     top: 0;
@@ -103,16 +112,16 @@ const shortDescription = description.length > maxDescriptionLength
     transition: all 0.6s ease;
     z-index: 2;
   }
-  
+
   .service-card:hover .service-overlay {
     background-color: rgba(204, 192, 182, 0.12);
   }
-  
+
   .service-card:hover .service-img {
     transform: scale(1.05);
-    transition: transform 8s cubic-bezier(0.215, 0.610, 0.355, 1);
+    transition: transform 8s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  
+
   .service-content {
     padding: 50px; /* Mais espaço interno */
     position: relative;
@@ -121,7 +130,7 @@ const shortDescription = description.length > maxDescriptionLength
     flex-direction: column;
     height: 100%;
   }
-  
+
   .service-icon {
     font-size: 2.2rem;
     color: var(--color-taupe);
@@ -130,12 +139,12 @@ const shortDescription = description.length > maxDescriptionLength
     transition: transform 0.5s ease;
     opacity: 0.85;
   }
-  
+
   .service-card:hover .service-icon {
     transform: scale(1.05);
     opacity: 1;
   }
-  
+
   .service-content h3 {
     font-family: var(--font-primary);
     font-size: 2rem;
@@ -146,11 +155,11 @@ const shortDescription = description.length > maxDescriptionLength
     color: var(--color-dark);
     transition: color 0.4s ease;
   }
-  
+
   .service-card:hover h3 {
     color: var(--color-secondary);
   }
-  
+
   .service-divider {
     width: 45px;
     height: 1px;
@@ -159,12 +168,12 @@ const shortDescription = description.length > maxDescriptionLength
     transition: all 0.5s ease;
     opacity: 0.7;
   }
-  
+
   .service-card:hover .service-divider {
     width: 70px;
     opacity: 0.9;
   }
-  
+
   .service-content p {
     color: var(--color-text);
     line-height: 2;
@@ -174,7 +183,7 @@ const shortDescription = description.length > maxDescriptionLength
     font-weight: 300;
     letter-spacing: 0.02em;
   }
-  
+
   .btn-service {
     display: inline-flex;
     align-items: center;
@@ -189,106 +198,106 @@ const shortDescription = description.length > maxDescriptionLength
     padding-bottom: 5px;
     border-bottom: 1px solid transparent;
   }
-  
+
   .btn-service .arrow {
     display: inline-block;
     margin-left: 10px;
     transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  
+
   .btn-service:hover {
-    color: #B4A89E; /* Versão mais escura do taupe (#CCC0B6) */
+    color: #b4a89e; /* Versão mais escura do taupe (#CCC0B6) */
     border-bottom-color: var(--color-button);
   }
-  
+
   .btn-service:hover .arrow {
     transform: translateX(5px);
   }
-  
+
   /* Responsividade melhorada */
   @media (max-width: 1024px) {
     .service-content {
       padding: 40px;
     }
-    
+
     .service-content h3 {
       font-size: 1.9rem;
     }
-    
+
     .service-img-container {
       height: 280px;
     }
   }
-  
+
   @media (max-width: 768px) {
     .service-content {
       padding: 35px;
     }
-    
+
     .service-content h3 {
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
-    
+
     .service-img-container {
       height: 260px;
     }
-    
+
     .service-content p {
       font-size: 1rem;
       margin-bottom: 30px;
     }
   }
-  
+
   @media (max-width: 580px) {
     .service-content {
       padding: 30px;
     }
-    
+
     .service-content h3 {
       font-size: 1.7rem;
     }
-    
+
     .service-img-container {
       height: 240px;
     }
   }
-  
+
   @media (max-width: 480px) {
     .service-content {
       padding: 25px;
     }
-    
+
     .service-content h3 {
       font-size: 1.6rem;
       margin-bottom: 18px;
     }
-    
+
     .service-img-container {
       height: 220px;
     }
-    
+
     .service-content p {
       font-size: 0.95rem;
       line-height: 1.8;
       margin-bottom: 25px;
     }
-    
+
     .btn-service {
       font-size: 0.8rem;
       letter-spacing: 1.5px;
     }
   }
-  
+
   @media (max-width: 320px) {
     .service-content {
       padding: 20px;
     }
-    
+
     .service-img-container {
       height: 200px;
     }
-    
+
     .service-content h3 {
       font-size: 1.5rem;
     }

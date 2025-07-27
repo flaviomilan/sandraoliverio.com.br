@@ -26,7 +26,7 @@ export interface GACustomDimensions {
 }
 
 // Eventos personalizados para o site
-export type GACustomEvents = 
+export type GACustomEvents =
   | 'contact_form_submit'
   | 'whatsapp_click'
   | 'service_view'
@@ -46,8 +46,8 @@ declare global {
     gtag?: (
       command: 'config' | 'event' | 'js' | 'set',
       targetId: string | Date,
-      config?: Record<string, any>
+      config?: Record<string, unknown>
     ) => void;
-    dataLayer?: any[];
+    dataLayer?: unknown[];
   }
 }

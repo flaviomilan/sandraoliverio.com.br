@@ -3,8 +3,7 @@ export function setupLazyLoading() {
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.bottom >= 0
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.bottom >= 0
     );
   }
 
@@ -27,7 +26,7 @@ export function setupLazyLoading() {
   // Processa todas as imagens com atributo data-src
   function processLazyImages() {
     const lazyImages = document.querySelectorAll('img[data-src], div[data-background-image]');
-    
+
     lazyImages.forEach(image => {
       if (isInViewport(image)) {
         loadImage(image);
@@ -37,7 +36,7 @@ export function setupLazyLoading() {
 
   // Usar IntersectionObserver quando disponível (browsers modernos)
   if ('IntersectionObserver' in window) {
-    const lazyImageObserver = new IntersectionObserver((entries) => {
+    const lazyImageObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           loadImage(entry.target);
@@ -55,7 +54,7 @@ export function setupLazyLoading() {
     document.addEventListener('scroll', processLazyImages);
     window.addEventListener('resize', processLazyImages);
     window.addEventListener('orientationchange', processLazyImages);
-    
+
     // Processar inicialmente
     processLazyImages();
   }

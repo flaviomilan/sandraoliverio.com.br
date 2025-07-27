@@ -1,9 +1,9 @@
 /**
  * Instagram Basic Display API Integration
- * 
+ *
  * Este módulo fornece funcionalidades para buscar posts do Instagram
  * usando a Instagram Basic Display API oficial do Meta.
- * 
+ *
  * Configuração necessária:
  * 1. Criar um app no Facebook Developers (developers.facebook.com)
  * 2. Configurar Instagram Basic Display Product
@@ -23,29 +23,22 @@ const INSTAGRAM_API_BASE = 'https://graph.instagram.com';
 export async function fetchInstagramPosts(accessToken, limit = 6) {
   try {
     // Campos que queremos buscar de cada post
-    const fields = [
-      'id',
-      'media_type',
-      'media_url',
-      'permalink',
-      'caption',
-      'timestamp'
-    ].join(',');
+    const fields = ['id', 'media_type', 'media_url', 'permalink', 'caption', 'timestamp'].join(',');
 
     // URL da API com parâmetros
     const apiUrl = `${INSTAGRAM_API_BASE}/me/media?fields=${fields}&limit=${limit}&access_token=${accessToken}`;
 
     const response = await fetch(apiUrl);
-    
+
     if (!response.ok) {
       throw new Error(`Instagram API error: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
-    
+
     // Filtra apenas imagens (exclui vídeos para melhor performance)
-    const imagePosts = data.data.filter(post => 
-      post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM'
+    const imagePosts = data.data.filter(
+      post => post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM'
     );
 
     // Formata os dados para o formato esperado pelo componente
@@ -54,9 +47,8 @@ export async function fetchInstagramPosts(accessToken, limit = 6) {
       image: post.media_url,
       caption: post.caption || 'Post do Instagram',
       link: post.permalink,
-      timestamp: post.timestamp
+      timestamp: post.timestamp,
     }));
-
   } catch (error) {
     console.error('Erro ao buscar posts do Instagram:', error);
     throw error;
@@ -88,7 +80,7 @@ export async function refreshInstagramToken(accessToken) {
     const response = await fetch(
       `${INSTAGRAM_API_BASE}/refresh_access_token?grant_type=ig_refresh_token&access_token=${accessToken}`
     );
-    
+
     if (!response.ok) {
       throw new Error('Falha ao renovar token');
     }
@@ -107,47 +99,47 @@ export async function refreshInstagramToken(accessToken) {
  */
 export const fallbackInstagramPosts = [
   {
-    id: "fallback_1",
-    image: "/images/casamento-1.avif",
-    caption: "Cerimônia elegante com decoração sofisticada ✨ #casamento #elegancia",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
+    id: 'fallback_1',
+    image: '/images/casamento-1.avif',
+    caption: 'Cerimônia elegante com decoração sofisticada ✨ #casamento #elegancia',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
   },
   {
-    id: "fallback_2", 
-    image: "/images/casamento.avif",
-    caption: "Detalhes florais únicos para um casamento inesquecível 💐 #flores #casamento",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
+    id: 'fallback_2',
+    image: '/images/casamento.avif',
+    caption: 'Detalhes florais únicos para um casamento inesquecível 💐 #flores #casamento',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
   },
   {
-    id: "fallback_3",
-    image: "/images/corporativo.avif", 
-    caption: "Evento corporativo de alto padrão 🏢 #eventocorporativo #profissional",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
+    id: 'fallback_3',
+    image: '/images/corporativo.avif',
+    caption: 'Evento corporativo de alto padrão 🏢 #eventocorporativo #profissional',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
   },
   {
-    id: "fallback_4",
-    image: "/images/15anos.avif",
-    caption: "Festa de 15 anos com elegância e modernidade 🎉 #debutante #festa15anos",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
+    id: 'fallback_4',
+    image: '/images/15anos.avif',
+    caption: 'Festa de 15 anos com elegância e modernidade 🎉 #debutante #festa15anos',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
   },
   {
-    id: "fallback_5",
-    image: "/images/sandraoliverio.avif",
-    caption: "Sandra Oliverio - Assessoria personalizada 💫 #assessoria #eventos",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
+    id: 'fallback_5',
+    image: '/images/sandraoliverio.avif',
+    caption: 'Sandra Oliverio - Assessoria personalizada 💫 #assessoria #eventos',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
   },
   {
-    id: "fallback_6",
-    image: "/images/casamento-1.avif",
-    caption: "Arranjos florais que encantam 🌸 #decoracao #flores",
-    link: "https://instagram.com/sandra_oliverio",
-    timestamp: new Date().toISOString()
-  }
+    id: 'fallback_6',
+    image: '/images/casamento-1.avif',
+    caption: 'Arranjos florais que encantam 🌸 #decoracao #flores',
+    link: 'https://instagram.com/sandra_oliverio',
+    timestamp: new Date().toISOString(),
+  },
 ];
 
 /**
@@ -158,12 +150,11 @@ export const fallbackInstagramPosts = [
  * @param {boolean} options.useFallback - Forçar uso do fallback
  * @returns {Promise<Array>} Posts do Instagram
  */
-export async function getInstagramPosts({ 
-  accessToken = null, 
-  limit = 6, 
-  useFallback = false 
+export async function getInstagramPosts({
+  accessToken = null,
+  limit = 6,
+  useFallback = false,
 } = {}) {
-  
   // Se não há token ou forçar fallback, usar dados estáticos
   if (!accessToken || useFallback) {
     console.info('Usando posts de fallback do Instagram');
@@ -173,7 +164,7 @@ export async function getInstagramPosts({
   try {
     // Tentar buscar posts reais da API
     const posts = await fetchInstagramPosts(accessToken, limit);
-    
+
     if (posts.length === 0) {
       console.warn('Nenhum post encontrado na API, usando fallback');
       return fallbackInstagramPosts.slice(0, limit);

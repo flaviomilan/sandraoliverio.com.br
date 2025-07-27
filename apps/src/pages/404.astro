@@ -2,15 +2,16 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE, CONTACT } from '../constants';
 
-const pageTitle = "Página Não Encontrada | Sandra Oliverio - Assessoria";
-const pageDescription = "Ops! A página que você está procurando não foi encontrada. Volte para a página inicial e continue a navegar em nosso site.";
+const pageTitle = 'Página Não Encontrada | Sandra Oliverio - Assessoria';
+const pageDescription =
+  'Ops! A página que você está procurando não foi encontrada. Volte para a página inicial e continue a navegar em nosso site.';
 
 // Construindo a URL do WhatsApp
 const whatsappNumber = CONTACT.WHATSAPP.PHONE_NUMBER;
 const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 ---
 
-<MainLayout 
+<MainLayout
   title={pageTitle}
   description={pageDescription}
   ogType="website"
@@ -24,11 +25,13 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}`;
         <div class="divider-ornament"></div>
         <p>Desculpe, a página que você está procurando não existe ou foi movida.</p>
         <p>Enquanto isso, você pode...</p>
-        
+
         <div class="error-options">
           <a href="/" class="btn-primary">Voltar para a página inicial</a>
           <a href="/servicos" class="btn-secondary">Ver nossos serviços</a>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">Falar conosco</a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary"
+            >Falar conosco</a
+          >
         </div>
       </div>
     </div>
@@ -76,7 +79,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}`;
     display: inline-block;
   }
 
-  .divider-ornament::before, .divider-ornament::after {
+  .divider-ornament::before,
+  .divider-ornament::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -108,7 +112,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}`;
     margin-top: 40px;
   }
 
-  .btn-primary, .btn-secondary {
+  .btn-primary,
+  .btn-secondary {
     display: inline-block;
     padding: 12px 30px;
     border-radius: 30px;
