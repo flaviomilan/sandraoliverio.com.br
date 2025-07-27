@@ -10,9 +10,9 @@
     "deploy": "npx wrangler pages deploy dist"
   },
   "dependencies": {
-    "astro": "^5.7.10"
+    "astro": "^5.12.3"
   },
   "devDependencies": {
-    "wrangler": "^3.8.0"
+    "wrangler": "^4.26.0"
   }
 }
