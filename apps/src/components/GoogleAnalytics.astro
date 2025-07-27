@@ -1,0 +1,77 @@
+---
+// Componente para Google Analytics 4
+// Implementa tracking com configurações de privacidade adequadas
+
+import { ANALYTICS } from '../constants';
+
+const { GA_MEASUREMENT_ID, PRIVACY, DEBUG_MODE, ENABLED } = ANALYTICS;
+
+// Só carrega se o GA estiver habilitado e o ID estiver configurado
+const shouldLoadGA = ENABLED && GA_MEASUREMENT_ID;
+---
+
+{shouldLoadGA && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script define:vars={{ 
+      GA_MEASUREMENT_ID, 
+      PRIVACY, 
+      DEBUG_MODE 
+    }}>
+      // Função para verificar Do Not Track
+      function respectsDNT() {
+        return PRIVACY.RESPECT_DNT && 
+               (navigator.doNotTrack === "1" || 
+                window.doNotTrack === "1" || 
+                navigator.msDoNotTrack === "1");
+      }
+
+      // Só inicializa o GA se não estiver em DNT mode
+      if (!respectsDNT()) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        // Configuração do Google Analytics com privacidade
+        gtag('config', GA_MEASUREMENT_ID, {
+          // Configurações de privacidade
+          anonymize_ip: PRIVACY.ANONYMIZE_IP,
+          allow_ad_personalization_signals: PRIVACY.ALLOW_AD_PERSONALIZATION,
+          
+          // Configurações de desenvolvimento
+          debug_mode: DEBUG_MODE,
+          
+          // Configurações de cookies e privacidade
+          cookie_flags: 'SameSite=Strict;Secure',
+          cookie_expires: 63072000, // 2 anos
+          
+          // Configurações de performance
+          page_title: document.title,
+          page_location: window.location.href,
+          
+          // Configurações específicas para negócio
+          custom_map: {
+            'dimension1': 'service_type',
+            'dimension2': 'event_category'
+          }
+        });
+
+        // Log para desenvolvimento
+        if (DEBUG_MODE) {
+          console.log('Google Analytics carregado:', GA_MEASUREMENT_ID);
+        }
+      } else {
+        if (DEBUG_MODE) {
+          console.log('Google Analytics não carregado: Do Not Track ativado');
+        }
+      }
+    </script>
+  </>
+)}
+
+{DEBUG_MODE && !GA_MEASUREMENT_ID && (
+  <script>
+    console.warn('Google Analytics: GA_MEASUREMENT_ID não configurado. Configure a variável de ambiente GA_MEASUREMENT_ID.');
+  </script>
+)}

@@ -716,10 +716,26 @@ const personSchema = {
   
   .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 40px;
     max-width: 1000px;
     margin: 50px auto 0;
+  }
+  
+  /* Layout sofisticado 2x2 para desktop */
+  @media (min-width: 992px) {
+    .values-grid {
+      gap: 50px;
+      max-width: 1200px;
+    }
+    
+    .value-card {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
   
   .value-card {
@@ -907,6 +923,16 @@ const personSchema = {
   }
   
   /* Responsividade */
+  /* Layout para tablets e telas médias */
+  @media (max-width: 1200px) and (min-width: 769px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 35px;
+      max-width: 800px;
+    }
+  }
+  
   @media (max-width: 992px) {
     .intro-content {
       grid-template-columns: 1fr;
@@ -952,9 +978,16 @@ const personSchema = {
       font-size: 1.2rem;
     }
     
-    .team-grid, .values-grid {
+    .team-grid {
       grid-template-columns: 1fr;
       max-width: 400px;
+    }
+    
+    .values-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      max-width: 400px;
+      gap: 25px;
     }
     
     .experience-tag {

@@ -9,6 +9,7 @@ const {
 
 // Importando constantes
 import { CONTACT, SITE } from '../constants';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 // Usando constante do número do WhatsApp
 const whatsappNumber = CONTACT.WHATSAPP.PHONE_NUMBER;
@@ -50,6 +51,9 @@ const currentDate = new Date().toISOString();
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, SITE.URL).href} />
+    
+    <!-- Google Analytics -->
+    <GoogleAnalytics />
     
     <!-- Structured Data - JSON-LD - EventPlanner -->
     <script type="application/ld+json">
@@ -275,14 +279,15 @@ const currentDate = new Date().toISOString();
         cursor: pointer;
         background: none;
         border: none;
-        gap: 4px;
         z-index: 1001;
-        padding: 10px;
+        padding: 8px;
       }
       
       .hamburger-btn span {
+        display: block;
         width: 25px;
         height: 2px;
+        margin: 3px 0;
         background-color: var(--color-dark);
         transition: var(--transition);
       }
