@@ -42,6 +42,9 @@
   
 *.js
   Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
   
 # Arquivos importantes para SEO
 /sitemap.xml

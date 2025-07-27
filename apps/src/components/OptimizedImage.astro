@@ -1,0 +1,55 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  sizes?: string;
+  style?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  loading = 'lazy', 
+  fetchpriority = 'auto', 
+  class: className,
+  sizes,
+  style
+} = Astro.props;
+
+// Set appropriate dimensions for display to avoid oversized images
+const getOptimalDimensions = (originalSrc: string) => {
+  const dimensionMap: Record<string, { width: number; height: number }> = {
+    '/images/15anos.avif': { width: 352, height: 528 },
+    '/images/logo.png': { width: 160, height: 36 },
+    '/images/corporativo.avif': { width: 352, height: 528 },
+    '/images/casamento-1.avif': { width: 352, height: 433 },
+    '/images/sandraoliverio.avif': { width: 352, height: 375 },
+  };
+  
+  return dimensionMap[originalSrc] || { width: width || 'auto', height: height || 'auto' };
+};
+
+const optimalDims = getOptimalDimensions(src);
+const finalWidth = width || optimalDims.width;
+const finalHeight = height || optimalDims.height;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={finalWidth}
+  height={finalHeight}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  class={className}
+  sizes={sizes}
+  style={style}
+  decoding="async"
+/>

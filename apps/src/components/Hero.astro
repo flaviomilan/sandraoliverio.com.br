@@ -18,6 +18,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
       poster="/images/casamento.avif"
       data-astro-cid-bbe6dxrz
       loading="lazy"
+      fetchpriority="high"
       oncanplaythrough="this.style.opacity='1'"
       style="opacity: 0; transition: opacity 0.5s ease-in-out;"
     >
@@ -139,7 +140,7 @@ const whatsappUrl = `${URLS.WHATSAPP_BASE}/${CONTACT.WHATSAPP.PHONE_NUMBER}`;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(58, 58, 58, 0.75) 0%, rgba(42, 42, 42, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(58, 58, 58, 0.3) 0%, rgba(42, 42, 42, 0.3) 100%);
     z-index: 1;
     backdrop-filter: blur(0.5px);
   }

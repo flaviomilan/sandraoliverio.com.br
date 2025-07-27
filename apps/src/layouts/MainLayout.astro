@@ -88,8 +88,9 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, SITE.URL).href;
       }
     </script>
 
-    <!-- Local fonts -->
-    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <!-- Local fonts - load asynchronously -->
+    <link rel="preload" href="/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/fonts/fonts.css"></noscript>
 
     <!-- Load non-critical CSS asynchronously -->
     <script>

@@ -49,8 +49,27 @@ npm run deploy       # Deploy to Cloudflare Pages via Wrangler
 
 **Code Quality:**
 ```bash
-# From root directory
-npm run format       # Format code with Prettier (includes Astro plugin)
+# Linting and formatting
+npm run lint           # Run ESLint check
+npm run lint:fix       # Auto-fix ESLint issues
+npm run format         # Format code with Prettier
+npm run format:check   # Check formatting without modifying files
+npm run type-check     # Run Astro type checking
+npm run code-quality   # Run all checks (lint + format + type)
+npm run code-fix       # Auto-fix all issues (lint + format)
+```
+
+**Analytics Configuration:**
+```bash
+# Configure Google Analytics 4
+# Set environment variable GA_MEASUREMENT_ID with your Google Analytics ID
+# Example: GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# For development:
+echo "GA_MEASUREMENT_ID=G-XXXXXXXXXX" >> apps/.env
+
+# For production (Cloudflare Pages):
+# Add GA_MEASUREMENT_ID in Cloudflare Pages dashboard -> Settings -> Environment variables
 ```
 
 ## Architecture Notes
@@ -71,8 +90,11 @@ npm run format       # Format code with Prettier (includes Astro plugin)
 
 ## Important Files
 
-- `apps/src/constants.ts` - Contact info, WhatsApp number, site metadata
-- `apps/src/layouts/MainLayout.astro` - Primary page layout with SEO
+- `apps/src/constants.ts` - Contact info, WhatsApp number, site metadata, analytics config
+- `apps/src/layouts/MainLayout.astro` - Primary page layout with SEO and Google Analytics
+- `apps/src/components/GoogleAnalytics.astro` - Google Analytics 4 implementation
+- `apps/src/utils/analytics.ts` - Analytics helper functions and event tracking
+- `apps/src/types/analytics.ts` - TypeScript types for analytics
 - `apps/astro.config.mjs` - Astro configuration
 - `apps/wrangler.toml` - Cloudflare deployment settings
 
