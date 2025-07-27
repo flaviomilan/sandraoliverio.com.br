@@ -464,7 +464,7 @@ nav a:hover::after {
 }
 
 .btn-contato-mobile {
-  background-color: var(--color-button);
+  background-color: var(--color-dark); /* Mudando para cor mais escura com melhor contraste */
   color: white !important;
   padding: 16px 30px;
   border-radius: var(--border-radius);
@@ -476,7 +476,7 @@ nav a:hover::after {
 }
 
 .btn-contato-mobile:hover {
-  background-color: #8A7968 !important; /* Versão mais escura do taupe (B0A49A) */
+  background-color: var(--color-primary-dark) !important; /* Versão ainda mais escura para melhor contraste */
   transform: translateY(-2px);
   box-shadow: var(--shadow-accent);
 }
@@ -849,8 +849,8 @@ section {
 
 .testimonial-author {
   font-weight: 500;
-  color: var(--color-primary);
-  opacity: 0.9;
+  color: var(--color-dark); /* Mudando para cor mais escura com melhor contraste */
+  opacity: 1; /* Removendo opacidade para melhor contraste */
   font-size: 1.05rem;
 }
 
